@@ -54,7 +54,7 @@ Read first:
   `latest_funding_date` (Form D — the core signal here).
 - The free-text `top_job_titles_sponsored` string, when present.
 - Whether a known job-posting URL is currently live (`npm run ats:liveness`).
-- Whether a company exposes Greenhouse or Lever (`SCRIPTS/ats/detect_ats.py`).
+- Whether a company exposes Greenhouse or Lever (`SCRIPTS/ats/detect-ats.py`).
 - The `cognitive_pivot_score` and OEWS median wage for a SOC code **that I assign
   by hand** (the data carries no SOC code — see gaps).
 
@@ -130,7 +130,7 @@ Report each company as:
 npm run ats:liveness -- "https://job-url-1" "https://job-url-2"
 npm run ats:liveness -- --file data/ats/job-urls.txt
 # ATS detection takes COMPANY NAMES, not URLs:
-cd SCRIPTS/ats && python3 detect_ats.py "ImmunityBio, Inc." "Lyell Immunopharma"
+cd SCRIPTS/ats && python3 detect-ats.py "ImmunityBio, Inc." "Lyell Immunopharma"
 ```
 
 Keep separate: *ATS provider detected* (Greenhouse/Lever = the scrapers the repo
@@ -168,7 +168,7 @@ Recommendation: Pursue | Investigate | Skip for now
 | In company file | Yes / No                                 | row found                         |
 | Sponsorship     | Title-matched / Role-unknown / None      | Total Approvals, Total Denials, Approval_Rate (lifetime) |
 | Funding (Form D)| Stage / date / amount                    | latest_funding_* fields           |
-| ATS             | Greenhouse / Lever / Not-scraped         | detect_ats.py output              |
+| ATS             | Greenhouse / Lever / Not-scraped         | detect-ats.py output              |
 | Liveness        | Live / Closed / Not checked              | ats:liveness output               |
 | Cognitive score | <score> for SOC <code> / Not classified  | cognitive_pivot_score lookup      |
 | CV fit          | Strong / Mixed / Weak / Not checked      | matched requirements              |
@@ -207,7 +207,7 @@ silently dropping out.
 
 - **Mode:** funded-systems-analyst
 - **Inputs:** data/80-days-to-stay/data/SEC_DOL_H1b_data_mapped.csv; data/bls/compact/soc_occupation_compact.csv
-- **Command:** inline pandas title filter (Block A); npm run ats:liveness; detect_ats.py
+- **Command:** inline pandas title filter (Block A); npm run ats:liveness; detect-ats.py
 - **Output:** data/ats/reports/YYYY-MM-DD-systems-analyst-triage.md
 - **Worked:** companies title-matched: N of 1,557; live postings: N
 - **Verified:** in-file presence, aggregate approvals/denials, funding stage/date, liveness, ATS provider, SOC score
@@ -256,7 +256,7 @@ cannot see without running the mode:
 - **80 Days to Stay (primary):** the Form D + H-1B mapped table is the spine.
   Funding stage/date is a real freeze-risk signal here precisely because these are
   private companies — the exact case Form D was built for.
-- **Job-Ops:** `ats:liveness` and `detect_ats.py` stop the student tailoring a
+- **Job-Ops:** `ats:liveness` and `detect-ats.py` stop the student tailoring a
   resume for a dead posting; Greenhouse/Lever detection is a funded-headcount hint.
 - **Cognitive Pivot:** `cognitive_pivot_score` separates a durable systems-analyst
   role (15-1211 = 4.024) from an L1-helpdesk floor (15-1232 = 3.306, $60K) — used
@@ -287,7 +287,7 @@ cannot see without running the mode:
 
 **This output is real.** Every block below was actually executed on **2026-06-04**
 — the company filter against `SEC_DOL_H1b_data_mapped.csv`, the SOC lookup against
-the BLS compact table, `detect_ats.py` against Greenhouse/Lever over the network,
+the BLS compact table, `detect-ats.py` against Greenhouse/Lever over the network,
 and the repo's Playwright `check-liveness.mjs`. Numbers and statuses are copied
 from command output, not invented.
 
@@ -296,7 +296,7 @@ from command output, not invented.
 - `data/80-days-to-stay/data/SEC_DOL_H1b_data_mapped.csv` (30,369 rows)
 - Block A title filter: `analyst|business system|systems analyst|erp|application support|service deliver|implementation|consultant|support engineer`
 - `data/bls/compact/soc_occupation_compact.csv` for the role-quality lookup
-- `python3 SCRIPTS/ats/detect_ats.py "ImmunityBio, Inc." "Lyell Immunopharma" "Lacework" "Automation Anywhere" "Generate Capital"`
+- `python3 SCRIPTS/ats/detect-ats.py "ImmunityBio, Inc." "Lyell Immunopharma" "Lacework" "Automation Anywhere" "Generate Capital"`
 - `npm run ats:liveness -- "<live Lyell URL>" "<dead job id>"`
 
 ## Block A — what the query actually returned
@@ -334,7 +334,7 @@ helpdesk floor I would *skip*: 15-1232, score 3.306, median $60,340.
 
 ## Block B — ATS + liveness (real run, 2026-06-04)
 
-ATS detection (`SCRIPTS/ats/detect_ats.py`) run live against the top-5 shortlist:
+ATS detection (`SCRIPTS/ats/detect-ats.py`) run live against the top-5 shortlist:
 
 ```
 [1/5] ImmunityBio, Inc.   -> none        (0 jobs)   greenhouse 404, lever 404
@@ -410,7 +410,7 @@ Recommendation: Investigate (ImmunityBio, off-engine) | Skip-this-week (Lyell, n
 | ImmunityBio in the file; 20/0 approvals; Series D+ 2023-09-11 | **Verified** — read from CSV |
 | 1,557 of 30,369 companies have approvals; 213 title-match | **Verified** — query output |
 | SOC 15-1211 score 4.024, median $103,790 | **Verified** — BLS compact lookup |
-| ImmunityBio not on Greenhouse/Lever; Lyell on Greenhouse, 11 jobs | **Verified** — `detect_ats.py` live run |
+| ImmunityBio not on Greenhouse/Lever; Lyell on Greenhouse, 11 jobs | **Verified** — `detect-ats.py` live run |
 | Lyell live URL `active`, dead id `expired` (→ `?error=true`) | **Verified** — `check-liveness.mjs` (Playwright) |
 | Lyell has no live IT/systems-analyst role today | **Verified** — Greenhouse board fetch |
 | The role *is* SOC 15-1211 | **Inferred** — manual title→SOC mapping |

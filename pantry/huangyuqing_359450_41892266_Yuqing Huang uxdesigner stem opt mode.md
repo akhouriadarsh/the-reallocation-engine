@@ -88,7 +88,7 @@ node SCRIPTS/ats/check-liveness.mjs "https://example.com/job-posting-url"
 **Existing or expected extraction command:**
 
 ```bash
-python3 SCRIPTS/bls/extract_soc_occupation_table.py
+python3 SCRIPTS/bls/extract-soc-occupation-table.py
 ```
 
 **Proposed downstream scoring command:**
@@ -247,7 +247,7 @@ For public companies, skip Form D and log them as public-company stability check
 Use the BLS/O*NET occupation table and, if implemented later, the proposed cognitive scoring command.
 
 ```bash
-python3 SCRIPTS/bls/extract_soc_occupation_table.py
+python3 SCRIPTS/bls/extract-soc-occupation-table.py
 
 # PROPOSED downstream command
 python SCRIPTS/bls/cognitive_score.py --soc 15-1255

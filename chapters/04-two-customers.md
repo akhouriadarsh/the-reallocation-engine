@@ -77,7 +77,7 @@ Read first:
 Run:
 ```bash
 cd scripts/ats
-python3 detect_ats.py "Company Name" --output ../../data/ats/ats_detection_sample.csv
+python3 detect-ats.py "Company Name" --output ../../data/ats/ats_detection_sample.csv
 cd ../..
 npm run ats:scan
 npm run ats:liveness -- --file data/ats/job-urls.txt
@@ -121,7 +121,7 @@ Now here is the human card a maintainer reads:
 
 **Dependencies:**
 - `skills/_shared.md` — the verified-data contract; must be loaded first
-- `scripts/ats/detect_ats.py` — detects ATS by company name or CSV input
+- `scripts/ats/detect-ats.py` — detects ATS by company name or CSV input
 - `scripts/ats/scan.mjs` (via `npm run ats:scan`) — runs configured portal scan
 - `scripts/ats/` — liveness check and verify commands
 - `data/ats/portals.yml` — your working portal config (not the example)
@@ -131,7 +131,7 @@ Now here is the human card a maintainer reads:
 ```bash
 # Detect ATS for specific companies:
 cd scripts/ats
-python3 detect_ats.py "Company A" "Company B" --output ../../data/ats/ats_detection_sample.csv
+python3 detect-ats.py "Company A" "Company B" --output ../../data/ats/ats_detection_sample.csv
 
 # Run full portal scan (requires portals.yml to be configured):
 cd ../..

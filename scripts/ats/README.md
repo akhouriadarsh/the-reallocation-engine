@@ -9,12 +9,12 @@ files remain untouched for provenance.
 ## Structure
 
 - `scrapers/common/` — shared utilities copied from the original ATS workstream.
-- `detect_ats.py` — unified ATS detector.
+- `detect-ats.py` — unified ATS detector.
 - `scan.mjs` — zero-token portal scanner using the provider layer.
 - `check-liveness.mjs` — Playwright CLI for checking whether job URLs are active.
 - `liveness-core.mjs` — liveness classifier shared by scanner and CLI.
 - `liveness-browser.mjs` — Playwright page inspection for liveness checks.
-- `analyze_patterns.py` — Python audit scaffold for application, scan,
+- `analyze-patterns.py` — Python audit scaffold for application, scan,
   pipeline, and run-log pattern analysis.
 - `scrapers/greenhouse/scraper.py` — production Greenhouse scraper.
 - `scrapers/lever/scraper.py` — production Lever scraper.
@@ -60,13 +60,13 @@ Detect ATS platform for one or more companies:
 
 ```bash
 cd scripts/ats
-python3 detect_ats.py "Databricks, Inc." "Anthropic"
+python3 detect-ats.py "Databricks, Inc." "Anthropic"
 ```
 
 Run against the mapped master CSV:
 
 ```bash
-python3 detect_ats.py \
+python3 detect-ats.py \
   --csv ../../data/80-days-to-stay/data/SEC_DOL_H1b_data_mapped.csv \
   --company-column company_name \
   --output ../../data/ats/ats_detection_sample.csv
@@ -172,7 +172,7 @@ node scripts/ats/merge-tracker.mjs --dry-run
 
 ## Application Pattern Analysis
 
-`analyze_patterns.py` is the Python replacement scaffold for the old
+`analyze-patterns.py` is the Python replacement scaffold for the old
 `analyze-patterns.mjs` idea. It reads Reallocation Engine paths:
 
 - `data/ats/applications.md`
@@ -188,7 +188,7 @@ It writes:
 Run from the book root:
 
 ```bash
-python3 scripts/ats/analyze_patterns.py
+python3 scripts/ats/analyze-patterns.py
 ```
 
 On a fresh setup the audit mostly reports missing data and readiness blockers.

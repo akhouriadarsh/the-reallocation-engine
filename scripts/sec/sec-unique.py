@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-sec_unique.py - Remove duplicate companies from SEC data based on exact name, phone, and address matches
-Usage: python sec_unique.py sec_companies_targets.json
+sec-unique.py - Remove duplicate companies from SEC data based on exact name, phone, and address matches
+Usage: python sec-unique.py sec_companies_targets.json
 """
 
 import json
@@ -84,8 +84,8 @@ def deduplicate_companies(companies: List[Dict]) -> Tuple[List[Dict], int, Dict]
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: python sec_unique.py <input_json_file>")
-        print("Example: python sec_unique.py sec_companies_targets.json")
+        print("Usage: python sec-unique.py <input_json_file>")
+        print("Example: python sec-unique.py sec_companies_targets.json")
         sys.exit(1)
     
     input_file = Path(sys.argv[1])

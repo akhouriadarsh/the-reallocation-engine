@@ -28,7 +28,7 @@ Every recipe follows the same hierarchy:
 | `oferta.md` | Evaluate one role as pursue, investigate, or skip. | SEC/H-1B data, ATS scripts, BLS data, CV evidence |
 | `pdf.md` | Generate ATS-friendly PDFs from approved Markdown CVs. | `scripts/resumes/` |
 | `tracker.md` | Maintain application and scan history. | npm ATS tracker commands, `data/ats/applications.md` |
-| `patterns.md` | Analyze outcomes only after enough tracker history exists. | `scripts/ats/analyze_patterns.py` |
+| `patterns.md` | Analyze outcomes only after enough tracker history exists. | `scripts/ats/analyze-patterns.py` |
 | `update.md` | Keep recipes aligned with scripts, data contracts, and docs. | `scripts/`, `docs/`, `recipes/` |
 
 ## Draft And Helper Recipes

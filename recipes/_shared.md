@@ -110,19 +110,19 @@ notes.
 ### SEC
 
 ```bash
-python3 scripts/audit_sec_dol_h1b_data.py
-python3 scripts/sec/download_form_d_quarters.py --quarters 2025Q2 2025Q3 2025Q4 2026Q1 --user "Name email@example.com"
-python3 scripts/sec/refresh_recent_sec_quarters.py
-python3 scripts/sec/validate_h1b_join_sample.py
-python3 scripts/sec/entity_resolution.py --help
+python3 scripts/audit-sec-dol-h1b-data.py
+python3 scripts/sec/download-form-d-quarters.py --quarters 2025Q2 2025Q3 2025Q4 2026Q1 --user "Name email@example.com"
+python3 scripts/sec/refresh-recent-sec-quarters.py
+python3 scripts/sec/validate-h1b-join-sample.py
+python3 scripts/sec/entity-resolution.py --help
 ```
 
 ### ATS
 
 ```bash
 cd scripts/ats
-python3 detect_ats.py "Databricks, Inc." "Anthropic"
-python3 detect_ats.py --csv ../../data/80-days-to-stay/data/SEC_DOL_H1b_data_mapped.csv --company-column company_name --output ../../data/ats/ats_detection.csv
+python3 detect-ats.py "Databricks, Inc." "Anthropic"
+python3 detect-ats.py --csv ../../data/80-days-to-stay/data/SEC_DOL_H1b_data_mapped.csv --company-column company_name --output ../../data/ats/ats_detection.csv
 ```
 
 ```bash
@@ -134,7 +134,7 @@ npm run ats:verify
 ### BLS/O*NET
 
 ```bash
-python3 scripts/bls/extract_soc_occupation_table.py
+python3 scripts/bls/extract-soc-occupation-table.py
 ```
 
 ### Resumes

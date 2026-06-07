@@ -21,7 +21,7 @@ def default_form_d_root() -> Path:
 
 
 def load_sec_all_quarters():
-    script_path = Path(__file__).with_name("sec_all_quarters.py")
+    script_path = Path(__file__).with_name("sec-all-quarters.py")
     spec = importlib.util.spec_from_file_location("sec_all_quarters", script_path)
     if spec is None or spec.loader is None:
         raise RuntimeError(f"Cannot load {script_path}")
@@ -89,7 +89,7 @@ def main() -> None:
     print(f"Processed: {len(processed)}")
     print(f"Missing: {len(missing)}")
     if missing:
-        raise SystemExit("Missing extracted quarter folders. Run download_form_d_quarters.py first.")
+        raise SystemExit("Missing extracted quarter folders. Run download-form-d-quarters.py first.")
 
 
 if __name__ == "__main__":

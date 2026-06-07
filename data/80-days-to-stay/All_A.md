@@ -400,7 +400,7 @@ This is exponentially more valuable than generic company lists.
 - Rejected virtual environments (complexity for students)
 - Installed core packages: pandas, numpy, requests, etc.
 
-### 3. Single Quarter Parser (`sec_form_d.py`)
+### 3. Single Quarter Parser (`sec-form-d.py`)
 - Parses one quarterly folder of TSV files
 - Auto-detects column names (handles variations)
 - Outputs MongoDB-ready JSON with nested structure:
@@ -7503,7 +7503,7 @@ if __name__ == "__main__":
 ---
 
 
-## File: Scripts/sec_all_quarters.py
+## File: Scripts/sec-all-quarters.py
 
 ```py
 import pandas as pd
@@ -7788,7 +7788,7 @@ if __name__ == '__main__':
 ---
 
 
-## File: Scripts/sec_combine_quarters.py
+## File: Scripts/sec-combine-quarters.py
 
 ```py
 import json
@@ -7977,14 +7977,14 @@ if __name__ == '__main__':
 ---
 
 
-## File: Scripts/sec_domain_inference.py
+## File: Scripts/sec-domain-inference.py
 
 ```py
 #!/usr/bin/env python3
 """
-sec_domain_inference.py - Infer domain names from company names in SEC data
-Usage: python sec_domain_inference.py [input_json_file]
-Default: python sec_domain_inference.py (uses sec_companies_targets_unique.json)
+sec-domain-inference.py - Infer domain names from company names in SEC data
+Usage: python sec-domain-inference.py [input_json_file]
+Default: python sec-domain-inference.py (uses sec_companies_targets_unique.json)
 
 This script runs fully automated and can be safely interrupted and resumed.
 """
@@ -8342,7 +8342,7 @@ if __name__ == "__main__":
 ---
 
 
-## File: Scripts/sec_filter.py
+## File: Scripts/sec-filter.py
 
 ```py
 import json
@@ -8672,7 +8672,7 @@ if __name__ == "__main__":
 ---
 
 
-## File: Scripts/sec_flatten.py
+## File: Scripts/sec-flatten.py
 
 ```py
 import json
@@ -8877,7 +8877,7 @@ if __name__ == "__main__":
 ---
 
 
-## File: Scripts/sec_form_d.py
+## File: Scripts/sec-form-d.py
 
 ```py
 import pandas as pd
@@ -9185,11 +9185,11 @@ def main():
         epilog="""
 Examples:
   # Use current directory
-  python3 sec_form_d.py
+  python3 sec-form-d.py
   
   # Specify a directory
-  python3 sec_form_d.py /path/to/2025q1-d
-  python3 sec_form_d.py ./2025q1-d
+  python3 sec-form-d.py /path/to/2025q1-d
+  python3 sec-form-d.py ./2025q1-d
         """
     )
     
@@ -9228,13 +9228,13 @@ if __name__ == '__main__':
 ---
 
 
-## File: Scripts/sec_unique.py
+## File: Scripts/sec-unique.py
 
 ```py
 #!/usr/bin/env python3
 """
-sec_unique.py - Remove duplicate companies from SEC data based on exact name, phone, and address matches
-Usage: python sec_unique.py sec_companies_targets.json
+sec-unique.py - Remove duplicate companies from SEC data based on exact name, phone, and address matches
+Usage: python sec-unique.py sec_companies_targets.json
 """
 
 import json
@@ -9317,8 +9317,8 @@ def deduplicate_companies(companies: List[Dict]) -> Tuple[List[Dict], int, Dict]
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: python sec_unique.py <input_json_file>")
-        print("Example: python sec_unique.py sec_companies_targets.json")
+        print("Usage: python sec-unique.py <input_json_file>")
+        print("Example: python sec-unique.py sec_companies_targets.json")
         sys.exit(1)
     
     input_file = Path(sys.argv[1])
@@ -9415,12 +9415,12 @@ Extract text content from scraped HTML files. Two versions: **clean** (preserves
 
 ## Scripts
 
-### `webpage_processor_clean.py` - Smart Cleaning (Recommended)
+### `webpage-processor-clean.py` - Smart Cleaning (Recommended)
 - **Preserves**: Emails, phones, URLs, addresses, names, dates
 - **Removes**: Image/video URLs, technical timestamps, file sizes
 - **Use for**: Job leads, networking, business intelligence
 
-### `webpage_processor_raw.py` - Minimal Processing
+### `webpage-processor-raw.py` - Minimal Processing
 - **Preserves**: Everything
 - **Removes**: Only HTML tags (`<script>`, `<style>`)
 - **Use for**: Complete data archiving
@@ -9435,10 +9435,10 @@ pip install -r requirements.txt
 
 # Run clean version 
 cd Scripts
-python webpage_processor_clean.py
+python webpage-processor-clean.py
 
 # Run raw version (complete data)
-python webpage_processor_raw.py
+python webpage-processor-raw.py
 ```
 
 ## Project Structure
@@ -9446,8 +9446,8 @@ python webpage_processor_raw.py
 ```
 project-root/
 ├── Scripts/
-│   ├── webpage_processor_clean.py
-│   └── webpage_processor_raw.py
+│   ├── webpage-processor-clean.py
+│   └── webpage-processor-raw.py
 ├── websites/              # Input: scraped HTML files
 │   ├── company1.com/
 │   │   ├── page1.html
@@ -9523,7 +9523,7 @@ websites_path = base_dir / "custom_folder"
 ---
 
 
-## File: Scripts/webpage_processor_clean.py
+## File: Scripts/webpage-processor-clean.py
 
 ```py
 #!/usr/bin/env python3
@@ -9818,7 +9818,7 @@ if __name__ == "__main__":
 ---
 
 
-## File: Scripts/webpage_processor_raw.py
+## File: Scripts/webpage-processor-raw.py
 
 ```py
 #!/usr/bin/env python3

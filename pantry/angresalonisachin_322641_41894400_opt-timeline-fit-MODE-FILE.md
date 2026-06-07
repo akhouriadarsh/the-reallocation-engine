@@ -55,7 +55,7 @@ Columns used: `company_name`, `state`, `Total Approvals`, `Approval_Rate`,
 
 ```bash
 # ATS Detection — detect which job posting platform each company uses
-python3 SCRIPTS/ats/detect_ats.py \
+python3 SCRIPTS/ats/detect-ats.py \
   --csv data/80-days-to-stay/data/SEC_DOL_H1b_data_mapped.csv \
   --company-column company_name \
   --output data/ats/saloni-targets-ats.csv
@@ -164,7 +164,7 @@ Companies with recent funding: ~600
 Input: Filtered company list from Step 2.
 
 ```bash
-python3 SCRIPTS/ats/detect_ats.py \
+python3 SCRIPTS/ats/detect-ats.py \
   --csv data/ats/saloni-targets-ca.csv \
   --company-column company_name \
   --output data/ats/saloni-ca-ats.csv
@@ -322,7 +322,7 @@ Add to `modes/RUN_LOG.md`:
   - `data/bls/compact/soc_occupation_compact.csv`
   - Company list: [file]
 - **Scripts run:**
-  - `SCRIPTS/ats/detect_ats.py` → [output file]
+  - `SCRIPTS/ats/detect-ats.py` → [output file]
   - `npm run ats:liveness` → [output file]
 - **Outputs:**
   - Company ranking table: [file]

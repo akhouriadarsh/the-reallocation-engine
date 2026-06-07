@@ -45,7 +45,7 @@ grep "15-1243" data/bls/compact/soc_occupation_compact.csv
 
 # Detect ATS platform for target companies (if known)
 cd SCRIPTS/ats
-python3 detect_ats.py "Databricks, Inc." "Snowflake Inc."
+python3 detect-ats.py "Databricks, Inc." "Snowflake Inc."
 
 # Scan for live job postings (requires portals.yml configuration)
 npm run ats:scan

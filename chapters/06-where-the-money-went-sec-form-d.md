@@ -26,25 +26,25 @@ Running it is a sequence of seven commands:
 cd scripts/sec
 
 # 1. Download the Form D filing archives for the quarters you want
-python download_form_d_quarters.py
+python download-form-d-quarters.py
 
 # 2. Pull in the most recent quarters (keeps the archive current)
-python refresh_recent_sec_quarters.py
+python refresh-recent-sec-quarters.py
 
 # 3. Combine quarters into one dataset
-python sec_combine_quarters.py
+python sec-combine-quarters.py
 
 # 4. Filter to real offerings above your funding threshold
-python sec_filter.py
+python sec-filter.py
 
 # 5. Collapse to one record per company
-python sec_unique.py
+python sec-unique.py
 
 # 6. Infer each company's web domain
-python sec_domain_inference.py
+python sec-domain-inference.py
 
 # 7. Flatten to the final processed table
-python sec_flatten.py
+python sec-flatten.py
 ```
 
 Each step writes its output into the appropriate layer of `data/sec/form-d/` and leaves an audit file alongside it. The final product is a flat table: one row per funded company, with amount, date, industry, location, and — where the inference engine succeeded — a web domain. That last column matters more than it might seem. A company name without a website is a dead end. The domain inference step tries to give you a way in.

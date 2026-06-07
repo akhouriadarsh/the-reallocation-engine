@@ -36,7 +36,7 @@ It then checks whether those companies have live ML job postings via the ATS sca
 
 **Run (existing script):**
 ```bash
-python3 SCRIPTS/audit_sec_dol_h1b_data.py
+python3 SCRIPTS/audit-sec-dol-h1b-data.py
 ```
 
 **Manual filter (no unified script yet):**
@@ -73,7 +73,7 @@ data/sec/form-d/processed/companies-sec-2025q2-d.json
 
 **Run (existing script):**
 ```bash
-python3 SCRIPTS/sec/refresh_recent_sec_quarters.py
+python3 SCRIPTS/sec/refresh-recent-sec-quarters.py
 ```
 
 **Manual merge (no recency-flag script yet):**
@@ -106,7 +106,7 @@ A 2026Q1 seed round of $2M is not the same as a Series B of $80M. Until a fundin
 
 **Run (existing script):**
 ```bash
-python3 SCRIPTS/bls/extract_soc_occupation_table.py
+python3 SCRIPTS/bls/extract-soc-occupation-table.py
 ```
 
 **What to look up:**
@@ -139,7 +139,7 @@ Roles with `cognitive_pivot_score >= 3.5` and `job_zone >= 4` are the most resil
 **Run (existing scripts):**
 ```bash
 cd SCRIPTS/ats
-python3 detect_ats.py \
+python3 detect-ats.py \
   --csv ../../data/80-days-to-stay/data/SEC_DOL_H1b_data_mapped.csv \
   --company-column company_name \
   --output ../../data/ats/ml_shortlist_ats.csv
@@ -325,7 +325,7 @@ Save to: `data/ats/ml_shortlist.csv`
 - soc_occupation_compact.csv (1,016 occupations)
 
 **Steps completed:**
-- [ ] audit_sec_dol_h1b_data.py — H-1B row count: ___
+- [ ] audit-sec-dol-h1b-data.py — H-1B row count: ___
 - [ ] SEC Form D recency flags added
 - [ ] BLS SOC lookup for 15-1252, 15-2051, 15-1299
 - [ ] ATS detection run for shortlist: Y/N

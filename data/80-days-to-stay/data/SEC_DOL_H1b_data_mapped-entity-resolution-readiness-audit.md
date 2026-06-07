@@ -20,7 +20,7 @@ codes from the source H-1B/LCA records.
 
 ## What Was Added
 
-`scripts/sec/entity_resolution.py` now provides a rerunnable entity-resolution
+`scripts/sec/entity-resolution.py` now provides a rerunnable entity-resolution
 pipeline for when the raw LCA table is available.
 
 Join priority:
@@ -35,7 +35,7 @@ The script writes both a resolved CSV and a Markdown `-audit.md` report.
 Example:
 
 ```bash
-python3 scripts/sec/entity_resolution.py \
+python3 scripts/sec/entity-resolution.py \
   --sec data/80-days-to-stay/data/SEC_DOL_H1b_data_mapped.csv \
   --lca data/lca/raw/LCA_Disclosure_Data.csv \
   --output data/lca/resolved/sec_lca_entity_resolution.csv \
@@ -61,6 +61,6 @@ Do not replace the existing `SEC_DOL_H1b_data_mapped.csv` yet.
 
 The current safe next move is to locate or download the raw DOL LCA disclosure
 files and USCIS H-1B Employer Data Hub source used for the original merge, then
-rerun `entity_resolution.py` into a new output file. The existing mapped CSV
+rerun `entity-resolution.py` into a new output file. The existing mapped CSV
 should remain the base dataset until the replacement join has an audit report
 and manual validation sample.

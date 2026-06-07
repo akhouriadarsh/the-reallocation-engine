@@ -24,7 +24,7 @@ Both are organized by SOC code. The pipeline in `scripts/bls/` joins them into a
 
 ```bash
 cd scripts/bls
-python extract_soc_occupation_table.py     # builds the compact SOC/OEWS/O*NET table into data/bls/compact/
+python extract-soc-occupation-table.py     # builds the compact SOC/OEWS/O*NET table into data/bls/compact/
 ```
 
 The output is a single flat table. Pull your target occupation's row. You get alternate titles confirming the match, job zone, skill and ability ratings, national employment over multiple OEWS survey years, and the full wage distribution. That is role quality — not a feeling about the posting, but a set of features measured by the people whose job it is to measure them.
@@ -68,7 +68,7 @@ Role quality, read this way, is a strong directional signal. It is not a salary 
 - **SOC code:** the Standard Occupational Classification identifier for the real occupation underneath a job title; the hinge of the whole chapter.
 - **O\*NET:** the occupational database of alternate titles, job zones, and ability/skill ratings — what is this work?
 - **BLS OEWS:** national employment and wage estimates per occupation — how many exist and what do they pay?
-- **Compact table:** the joined O\*NET + OEWS row per occupation produced by `extract_soc_occupation_table.py`.
+- **Compact table:** the joined O\*NET + OEWS row per occupation produced by `extract-soc-occupation-table.py`.
 
 ## Run-log prompt
 

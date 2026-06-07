@@ -575,7 +575,7 @@ Read first:
 Run:
 ```bash
 cd scripts/ats
-python3 detect_ats.py "Company Name" --output ../../data/ats/ats_detection_sample.csv
+python3 detect-ats.py "Company Name" --output ../../data/ats/ats_detection_sample.csv
 cd ../..
 npm run ats:scan
 npm run ats:liveness -- --file data/ats/job-urls.txt
@@ -619,7 +619,7 @@ Now here is the human card a maintainer reads:
 
 **Dependencies:**
 - `skills/_shared.md` — the verified-data contract; must be loaded first
-- `scripts/ats/detect_ats.py` — detects ATS by company name or CSV input
+- `scripts/ats/detect-ats.py` — detects ATS by company name or CSV input
 - `scripts/ats/scan.mjs` (via `npm run ats:scan`) — runs configured portal scan
 - `scripts/ats/` — liveness check and verify commands
 - `data/ats/portals.yml` — your working portal config (not the example)
@@ -629,7 +629,7 @@ Now here is the human card a maintainer reads:
 ```bash
 # Detect ATS for specific companies:
 cd scripts/ats
-python3 detect_ats.py "Company A" "Company B" --output ../../data/ats/ats_detection_sample.csv
+python3 detect-ats.py "Company A" "Company B" --output ../../data/ats/ats_detection_sample.csv
 
 # Run full portal scan (requires portals.yml to be configured):
 cd ../..
@@ -908,25 +908,25 @@ Running it is a sequence of seven commands:
 cd scripts/sec
 
 # 1. Download the Form D filing archives for the quarters you want
-python download_form_d_quarters.py
+python download-form-d-quarters.py
 
 # 2. Pull in the most recent quarters (keeps the archive current)
-python refresh_recent_sec_quarters.py
+python refresh-recent-sec-quarters.py
 
 # 3. Combine quarters into one dataset
-python sec_combine_quarters.py
+python sec-combine-quarters.py
 
 # 4. Filter to real offerings above your funding threshold
-python sec_filter.py
+python sec-filter.py
 
 # 5. Collapse to one record per company
-python sec_unique.py
+python sec-unique.py
 
 # 6. Infer each company's web domain
-python sec_domain_inference.py
+python sec-domain-inference.py
 
 # 7. Flatten to the final processed table
-python sec_flatten.py
+python sec-flatten.py
 ```
 
 Each step writes its output into the appropriate layer of `data/sec/form-d/` and leaves an audit file alongside it. The final product is a flat table: one row per funded company, with amount, date, industry, location, and — where the inference engine succeeded — a web domain. That last column matters more than it might seem. A company name without a website is a dead end. The domain inference step tries to give you a way in.
@@ -1064,13 +1064,13 @@ The pipeline exposes this. From the project root:
 
 ```bash
 cd scripts/sec
-python validate_h1b_join_sample.py
+python validate-h1b-join-sample.py
 ```
 
 checks the company-name join against USCIS H-1B data, and:
 
 ```bash
-python scripts/audit_sec_dol_h1b_data.py
+python scripts/audit-sec-dol-h1b-data.py
 ```
 
 audits the full SEC + DOL + H-1B join coverage. The output is a number: how many companies on your shortlist matched, how many failed to match, and therefore how much of your list the tier actually covers. You read that coverage number before trusting any Unknown. If 30% of your shortlist failed to match, a significant fraction of your Unknowns are artifacts, not verdicts.
@@ -1158,7 +1158,7 @@ When you pull up a careers page in a browser, you are looking at a rendered surf
 The first thing I do when I hit a new company is run a single script:
 
 ```bash
-python scripts/ats/detect_ats.py --company "Example Bio"
+python scripts/ats/detect-ats.py --company "Example Bio"
 ```
 
 It returns a label — Greenhouse, Lever, Ashby, or unknown. That label is not interesting on its own. What it unlocks is the ability to read the feed correctly. A scraper built for Greenhouse reads Lever data as noise. Detection is the key; without it, everything downstream is garbled.
@@ -1209,7 +1209,7 @@ The output is one of three calls per posting: live, ghost, or investigate. The f
 
 ## One company, both doors
 
-Let me make this concrete. A biotech with a strong sponsorship tier has two open data roles, both with the same title. `detect_ats.py` returns Greenhouse.
+Let me make this concrete. A biotech with a strong sponsorship tier has two open data roles, both with the same title. `detect-ats.py` returns Greenhouse.
 
 Posting A went up nine days ago. The description references a specific named project — a model being retrained on a new assay dataset — and names the team lead the role would report to. The company's other listings show recent count changes; two roles present last week are absent this week. Five signals, all pointing the same direction. `ats:liveness` calls it live.
 
@@ -1268,7 +1268,7 @@ That's where the next chapter begins. The role exists, and you can apply to it. 
 
 **Application**
 
-4. *(Apply, moderate)* Run `detect_ats.py` on one of your target companies. Record: which ATS was detected, how you verified the result, and one thing the ATS label tells you about how to read that company's postings.
+4. *(Apply, moderate)* Run `detect-ats.py` on one of your target companies. Record: which ATS was detected, how you verified the result, and one thing the ATS label tells you about how to read that company's postings.
    *Tests the transition from knowing the command to interpreting its output.*
 
 5. *(Analyze, moderate)* Take three postings from the same company — choose a company with multiple open roles. Classify each posting as live, ghost, or investigate. Write the specific signal values (posting age, update history, description specificity, portal activity, funding context) that drove each classification. Identify which classification you are least confident in and explain why.
@@ -1315,7 +1315,7 @@ Both are organized by SOC code. The pipeline in `scripts/bls/` joins them into a
 
 ```bash
 cd scripts/bls
-python extract_soc_occupation_table.py     # builds the compact SOC/OEWS/O*NET table into data/bls/compact/
+python extract-soc-occupation-table.py     # builds the compact SOC/OEWS/O*NET table into data/bls/compact/
 ```
 
 The output is a single flat table. Pull your target occupation's row. You get alternate titles confirming the match, job zone, skill and ability ratings, national employment over multiple OEWS survey years, and the full wage distribution. That is role quality — not a feeling about the posting, but a set of features measured by the people whose job it is to measure them.
@@ -1359,7 +1359,7 @@ Role quality, read this way, is a strong directional signal. It is not a salary 
 - **SOC code:** the Standard Occupational Classification identifier for the real occupation underneath a job title; the hinge of the whole chapter.
 - **O\*NET:** the occupational database of alternate titles, job zones, and ability/skill ratings — what is this work?
 - **BLS OEWS:** national employment and wage estimates per occupation — how many exist and what do they pay?
-- **Compact table:** the joined O\*NET + OEWS row per occupation produced by `extract_soc_occupation_table.py`.
+- **Compact table:** the joined O\*NET + OEWS row per occupation produced by `extract-soc-occupation-table.py`.
 
 ## Run-log prompt
 
@@ -1989,10 +1989,10 @@ npm run ats:scan        # feeds new postings into the pipeline for decisions
 # tracker skill: log each decision (company, role, score, tier, timeline flag, outcome incl. skip)
 
 # Analyze tracker/scan/pipeline data for patterns and the allocation summary
-python scripts/ats/analyze_patterns.py
+python scripts/ats/analyze-patterns.py
 ```
 
-For every decision the engine produces — apply or skip — the tracker records the company and role, the composite score and tier, the timeline flag, the recommendation, and the outcome. The output of `analyze_patterns.py` is the daily allocation summary plus your skip rate and per-tier response rates. You read the skip rate first. It is the fastest signal that the method is or isn't operating.
+For every decision the engine produces — apply or skip — the tracker records the company and role, the composite score and tier, the timeline flag, the recommendation, and the outcome. The output of `analyze-patterns.py` is the daily allocation summary plus your skip rate and per-tier response rates. You read the skip rate first. It is the fastest signal that the method is or isn't operating.
 
 A privacy note that belongs here before anything else: your tracker files — `data/ats/applications.md`, `pipeline.md`, scan history — contain your real targets and real activity. They are private, never committed or shared without a privacy review. This is a hard rule that becomes load-bearing in Chapter 16.
 
@@ -2093,7 +2093,7 @@ npm run ats:scan        # real postings from real companies
 npm run ats:liveness    # classify them live/ghost
 npm run ats:verify      # confirm pipeline data is consistent
 # then: pipeline → oferta on real roles → tracker logs every decision
-python scripts/ats/analyze_patterns.py   # skip rate + allocation summary
+python scripts/ats/analyze-patterns.py   # skip rate + allocation summary
 ```
 
 The output is a batch of real, logged decisions — Apply/Consider/Skip on actual roles, each factor sourced, each decision in the tracker, a skip rate you can read. Not a simulation. Not a walkthrough. The engine, applied to the search you are actually running.

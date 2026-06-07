@@ -16,7 +16,7 @@ When you pull up a careers page in a browser, you are looking at a rendered surf
 The first thing I do when I hit a new company is run a single script:
 
 ```bash
-python scripts/ats/detect_ats.py --company "Example Bio"
+python scripts/ats/detect-ats.py --company "Example Bio"
 ```
 
 It returns a label — Greenhouse, Lever, Ashby, or unknown. That label is not interesting on its own. What it unlocks is the ability to read the feed correctly. A scraper built for Greenhouse reads Lever data as noise. Detection is the key; without it, everything downstream is garbled.
@@ -67,7 +67,7 @@ The output is one of three calls per posting: live, ghost, or investigate. The f
 
 ## One company, both doors
 
-Let me make this concrete. A biotech with a strong sponsorship tier has two open data roles, both with the same title. `detect_ats.py` returns Greenhouse.
+Let me make this concrete. A biotech with a strong sponsorship tier has two open data roles, both with the same title. `detect-ats.py` returns Greenhouse.
 
 Posting A went up nine days ago. The description references a specific named project — a model being retrained on a new assay dataset — and names the team lead the role would report to. The company's other listings show recent count changes; two roles present last week are absent this week. Five signals, all pointing the same direction. `ats:liveness` calls it live.
 
@@ -126,7 +126,7 @@ That's where the next chapter begins. The role exists, and you can apply to it. 
 
 **Application**
 
-4. *(Apply, moderate)* Run `detect_ats.py` on one of your target companies. Record: which ATS was detected, how you verified the result, and one thing the ATS label tells you about how to read that company's postings.
+4. *(Apply, moderate)* Run `detect-ats.py` on one of your target companies. Record: which ATS was detected, how you verified the result, and one thing the ATS label tells you about how to read that company's postings.
    *Tests the transition from knowing the command to interpreting its output.*
 
 5. *(Analyze, moderate)* Take three postings from the same company — choose a company with multiple open roles. Classify each posting as live, ghost, or investigate. Write the specific signal values (posting age, update history, description specificity, portal activity, funding context) that drove each classification. Identify which classification you are least confident in and explain why.

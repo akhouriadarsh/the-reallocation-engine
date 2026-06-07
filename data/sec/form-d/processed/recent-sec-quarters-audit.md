@@ -23,7 +23,7 @@ Processed JSON files are in `data/sec/form-d/processed/`.
 
 ## FEIN Finding
 
-`sec_all_quarters.py` now captures `company.fein` if a FEIN-like column exists,
+`sec-all-quarters.py` now captures `company.fein` if a FEIN-like column exists,
 but the refreshed SEC Form D TSV files do **not** include a FEIN/EIN column.
 
 The `ISSUERS.tsv` header for all four refreshed quarters has 23 columns:

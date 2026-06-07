@@ -98,12 +98,12 @@ npm run svg-to-png
 Current Python command surface includes:
 
 ```bash
-python3 scripts/audit_sec_dol_h1b_data.py
-python3 scripts/sec/download_form_d_quarters.py --quarters 2025Q2 2025Q3 2025Q4 2026Q1 --user "Name email@example.com"
-python3 scripts/sec/refresh_recent_sec_quarters.py
-python3 scripts/sec/validate_h1b_join_sample.py
-python3 scripts/bls/extract_soc_occupation_table.py
-python3 scripts/ats/analyze_patterns.py
+python3 scripts/audit-sec-dol-h1b-data.py
+python3 scripts/sec/download-form-d-quarters.py --quarters 2025Q2 2025Q3 2025Q4 2026Q1 --user "Name email@example.com"
+python3 scripts/sec/refresh-recent-sec-quarters.py
+python3 scripts/sec/validate-h1b-join-sample.py
+python3 scripts/bls/extract-soc-occupation-table.py
+python3 scripts/ats/analyze-patterns.py
 ```
 
 ### 4. Recipes Layer
@@ -194,7 +194,7 @@ Relevant paths:
 - `recipes/oferta.md`
 - `recipes/tracker.md`
 - `data/ats/applications.md`
-- `scripts/ats/analyze_patterns.py`
+- `scripts/ats/analyze-patterns.py`
 
 ## Chapter Map
 
@@ -238,7 +238,7 @@ Relevant paths:
 3. Run `recipes/pipeline.md` and `npm run ats:verify` to check liveness and pipeline integrity.
 4. Run `recipes/oferta.md` for a specific role: sponsorship + fit + liveness + timeline.
 5. Log Apply / Consider / Skip using `recipes/tracker.md`.
-6. Run `python3 scripts/ats/analyze_patterns.py` once there is enough tracker history.
+6. Run `python3 scripts/ats/analyze-patterns.py` once there is enough tracker history.
 7. Record significant runs, blockers, and artifacts in `logs/RUN_LOG.md`.
 
 ## Privacy And Commit Hygiene

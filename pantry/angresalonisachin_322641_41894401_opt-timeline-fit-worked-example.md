@@ -58,7 +58,7 @@
 
 ## 3. ATS Detection & Liveness Check
 
-**Data source:** Script reference: `SCRIPTS/ats/detect_ats.py` and `SCRIPTS/ats/check-liveness.mjs`
+**Data source:** Script reference: `SCRIPTS/ats/detect-ats.py` and `SCRIPTS/ats/check-liveness.mjs`
 
 **Note:** The repo's SEC/H-1B dataset does not include ATS platform data or job posting liveness. In a real run, Saloni would execute these scripts against the company URLs to populate this section. For this worked example, we simulate realistic results based on known company practices.
 

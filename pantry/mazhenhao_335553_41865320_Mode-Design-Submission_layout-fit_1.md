@@ -130,7 +130,7 @@ Existing, maintained commands (verified to exist in the current checkout):
 
 ```bash
 # 1. Refresh / inspect the SOC compact table (role-quality layer)
-python3 SCRIPTS/bls/extract_soc_occupation_table.py
+python3 SCRIPTS/bls/extract-soc-occupation-table.py
 #    -> data/BLS/compact/soc_occupation_compact.csv  (+ bls-audit.md)
 
 # 2. Sponsorship + funding lookup (80 Days layer): grep the mapped CSV
@@ -138,7 +138,7 @@ python3 SCRIPTS/bls/extract_soc_occupation_table.py
 
 # 3. ATS provider + liveness (Job-Ops layer)
 cd SCRIPTS/ats
-python3 detect_ats.py "<Company Name>" --output ../../data/ats/<slug>-ats-check.csv
+python3 detect-ats.py "<Company Name>" --output ../../data/ats/<slug>-ats-check.csv
 cd ../..
 npm run ats:liveness -- <posting-url>
 ```

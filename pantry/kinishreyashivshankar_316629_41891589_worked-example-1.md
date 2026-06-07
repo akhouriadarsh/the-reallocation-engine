@@ -20,7 +20,7 @@
 
 **Commands (simulated):**
 ```bash
-python3 SCRIPTS/audit_sec_dol_h1b_data.py
+python3 SCRIPTS/audit-sec-dol-h1b-data.py
 grep -i "YASH" data/80-days-to-stay/data/SEC_DOL_H1b_data_mapped.csv
 ```
 
@@ -49,7 +49,7 @@ grep -i "YASH" data/80-days-to-stay/data/SEC_DOL_H1b_data_mapped.csv
 
 **Commands (simulated):**
 ```bash
-python3 SCRIPTS/bls/extract_soc_occupation_table.py
+python3 SCRIPTS/bls/extract-soc-occupation-table.py
 grep "15-1252" data/bls/compact/soc_occupation_compact.csv
 grep "15-1299" data/bls/compact/soc_occupation_compact.csv
 ```
@@ -77,7 +77,7 @@ is average of selected O*NET reasoning, judgment, and systems scores.
 **Commands (simulated):**
 ```bash
 cd SCRIPTS/ats
-python3 detect_ats.py "SAP America" "Deloitte" "Accenture" \
+python3 detect-ats.py "SAP America" "Deloitte" "Accenture" \
   "Microsoft" "Google" "Salesforce" "ServiceNow" \
   "Workday" "Cognizant" "Infosys"
 
@@ -101,7 +101,7 @@ npm run ats:liveness -- https://jobs.lever.co/servicenow
 | Cognizant   | NO (public)       | N/A           | Not found  | —          | CONSULTING   |
 | Infosys     | Partial record    | N/A (public)  | Not found  | —          | CONSULTING   |
 
-- VERIFIED: ATS detection uses real `detect_ats.py` — Greenhouse and
+- VERIFIED: ATS detection uses real `detect-ats.py` — Greenhouse and
   Lever scrapers only. Cognizant and Infosys not found on either
   supported platform.
 - VERIFIED: Form D absence for public companies is expected — N/A,
@@ -187,7 +187,7 @@ Top 3 with confirmed live roles:
 * Mode: h1b-sponsorship-audit
 * Inputs: `data/80-days-to-stay/data/SEC_DOL_H1b_data_mapped.csv`,
   `data/bls/compact/soc_occupation_compact.csv`,
-  `SCRIPTS/ats/detect_ats.py`, `npm run ats:liveness`
+  `SCRIPTS/ats/detect-ats.py`, `npm run ats:liveness`
 * Outputs: `data/ats/reports/2026-06-01-yash-sponsorship-audit.md`
 * Result: YASH not found in mapped dataset (data gap, not red flag).
   SOC 15-1252/15-1299 cognitive_pivot_score 7.2/8.1 — HIGH resilience.

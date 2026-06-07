@@ -178,7 +178,7 @@ converting day-log voice (emoji, "we built today") into chapter voice.
   **LCA filing rate 0.40, H-1B approval rate 0.30, funding recency 0.20, size
   0.10**; tiers **Proven ≥ 0.65, Likely ≥ 0.35, Unknown < 0.35** (no LCA
   history); the "$10M funding but no LCA → Unknown with positive signal" edge.
-- `scripts/sec/entity_resolution.py` + README — the join order (FEIN exact →
+- `scripts/sec/entity-resolution.py` + README — the join order (FEIN exact →
   normalized name → fuzzy 0.88 → unknown).
 - `data/80-days-to-stay/data/` audits — `SEC_DOL_H1b_data_mapped-audit.md`,
   `-join-validation-audit.md`, `-entity-resolution-readiness-audit.md`.
@@ -201,11 +201,11 @@ converting day-log voice (emoji, "we built today") into chapter voice.
 - `…/80-days-day-06/README.md` — "The ATS Revelation": the **triple win** —
   Win #1 live job postings (Greenhouse `boards-api` example), Win #2 resume
   strategy intelligence (feeds Ch 11), Win #3 company-sophistication signal.
-- `scripts/ats/README.md` — the full subsystem: `detect_ats.py` (unified
+- `scripts/ats/README.md` — the full subsystem: `detect-ats.py` (unified
   detector), `scan.mjs` (zero-token provider scan), `check-liveness.mjs` +
   `liveness-core.mjs` + `liveness-browser.mjs` (Playwright liveness), Greenhouse
   and Lever production scrapers, `providers/` (Greenhouse/Lever/Ashby),
-  `analyze_patterns.py`.
+  `analyze-patterns.py`.
 - SDD **N-need on liveness** ("estimated probability the role is real and
   currently being filled") and **ghost jobs at 28–42%** of postings.
 - `data/ats/` working data and reports.
@@ -365,7 +365,7 @@ breaks parsers, why) is thin relative to other chapters.
 - `plain-summary` feature 5 — log every decision **including skips**; the
   counterintuitive target **skip rate ≥ 50%**; the daily allocation summary that
   reminds the reader how much network/portfolio time remains.
-- `data/ats/application-patterns-audit.md` + `scripts/ats/analyze_patterns.py` —
+- `data/ats/application-patterns-audit.md` + `scripts/ats/analyze-patterns.py` —
   the pattern-analysis scaffold.
 - `skills/tracker.md` and `skills/patterns.md`.
 

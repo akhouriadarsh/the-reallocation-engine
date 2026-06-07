@@ -6,7 +6,7 @@ features from `data/bls`.
 ## Compact SOC Occupation Table
 
 ```bash
-python3 scripts/bls/extract_soc_occupation_table.py
+python3 scripts/bls/extract-soc-occupation-table.py
 ```
 
 Outputs:

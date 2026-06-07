@@ -303,11 +303,11 @@ def main():
         epilog="""
 Examples:
   # Use current directory
-  python3 sec_form_d.py
+  python3 sec-form-d.py
   
   # Specify a directory
-  python3 sec_form_d.py /path/to/2025q1-d
-  python3 sec_form_d.py ./2025q1-d
+  python3 sec-form-d.py /path/to/2025q1-d
+  python3 sec-form-d.py ./2025q1-d
         """
     )
     

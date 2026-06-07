@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-sec_domain_inference.py - Infer domain names from company names in SEC data
-Usage: python sec_domain_inference.py [input_json_file]
-Default: python sec_domain_inference.py (uses sec_companies_targets_unique.json)
+sec-domain-inference.py - Infer domain names from company names in SEC data
+Usage: python sec-domain-inference.py [input_json_file]
+Default: python sec-domain-inference.py (uses sec_companies_targets_unique.json)
 
 This script runs fully automated and can be safely interrupted and resumed.
 """

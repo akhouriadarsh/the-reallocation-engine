@@ -7,12 +7,12 @@ Extract text content from scraped HTML files. Two versions: **clean** (preserves
 
 ## Scripts
 
-### `webpage_processor_clean.py` - Smart Cleaning (Recommended)
+### `webpage-processor-clean.py` - Smart Cleaning (Recommended)
 - **Preserves**: Emails, phones, URLs, addresses, names, dates
 - **Removes**: Image/video URLs, technical timestamps, file sizes
 - **Use for**: Job leads, networking, business intelligence
 
-### `webpage_processor_raw.py` - Minimal Processing
+### `webpage-processor-raw.py` - Minimal Processing
 - **Preserves**: Everything
 - **Removes**: Only HTML tags (`<script>`, `<style>`)
 - **Use for**: Complete data archiving
@@ -27,10 +27,10 @@ pip install -r requirements.txt
 
 # Run clean version 
 cd Scripts
-python webpage_processor_clean.py
+python webpage-processor-clean.py
 
 # Run raw version (complete data)
-python webpage_processor_raw.py
+python webpage-processor-raw.py
 ```
 
 ## Project Structure
@@ -38,8 +38,8 @@ python webpage_processor_raw.py
 ```
 project-root/
 ├── Scripts/
-│   ├── webpage_processor_clean.py
-│   └── webpage_processor_raw.py
+│   ├── webpage-processor-clean.py
+│   └── webpage-processor-raw.py
 ├── websites/              # Input: scraped HTML files
 │   ├── company1.com/
 │   │   ├── page1.html

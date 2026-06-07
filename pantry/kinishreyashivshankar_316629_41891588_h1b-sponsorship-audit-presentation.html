@@ -332,19 +332,19 @@
 
         <div class="layer">
           <div class="layer-name">80 Days to Stay</div>
-          <div class="layer-cmd">python3 SCRIPTS/audit_sec_dol_h1b_data.py<br>grep SEC_DOL_H1b_data_mapped.csv</div>
+          <div class="layer-cmd">python3 SCRIPTS/audit-sec-dol-h1b-data.py<br>grep SEC_DOL_H1b_data_mapped.csv</div>
           <div class="layer-desc">Check employer H-1B presence — Total Approvals, Approval_Rate, median_salary_offered</div>
         </div>
 
         <div class="layer">
           <div class="layer-name">Job-Ops</div>
-          <div class="layer-cmd">python3 detect_ats.py "Company"<br>npm run ats:liveness -- URL</div>
+          <div class="layer-cmd">python3 detect-ats.py "Company"<br>npm run ats:liveness -- URL</div>
           <div class="layer-desc">Passive backup employer monitoring — not applying, just watching monthly</div>
         </div>
 
         <div class="layer">
           <div class="layer-name">Cognitive Pivot</div>
-          <div class="layer-cmd">python3 SCRIPTS/bls/extract_soc_occupation_table.py<br>grep soc_occupation_compact.csv</div>
+          <div class="layer-cmd">python3 SCRIPTS/bls/extract-soc-occupation-table.py<br>grep soc_occupation_compact.csv</div>
           <div class="layer-desc">SOC 15-1252 → score 7.2 &nbsp;/&nbsp; SOC 15-1299 → score 8.1 — AI-resilient roles</div>
         </div>
 

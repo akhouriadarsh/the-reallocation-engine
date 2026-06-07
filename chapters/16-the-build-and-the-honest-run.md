@@ -63,7 +63,7 @@ npm run ats:scan        # real postings from real companies
 npm run ats:liveness    # classify them live/ghost
 npm run ats:verify      # confirm pipeline data is consistent
 # then: pipeline → oferta on real roles → tracker logs every decision
-python scripts/ats/analyze_patterns.py   # skip rate + allocation summary
+python scripts/ats/analyze-patterns.py   # skip rate + allocation summary
 ```
 
 The output is a batch of real, logged decisions — Apply/Consider/Skip on actual roles, each factor sourced, each decision in the tracker, a skip rate you can read. Not a simulation. Not a walkthrough. The engine, applied to the search you are actually running.

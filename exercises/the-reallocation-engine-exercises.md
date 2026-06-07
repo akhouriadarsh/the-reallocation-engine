@@ -307,7 +307,7 @@
 
 **Application**
 
-4. *(Apply, moderate)* Run `detect_ats.py` on one of your target companies. Record: which ATS was detected, how you verified the result, and one thing the ATS label tells you about how to read that company's postings.
+4. *(Apply, moderate)* Run `detect-ats.py` on one of your target companies. Record: which ATS was detected, how you verified the result, and one thing the ATS label tells you about how to read that company's postings.
    *Tests the transition from knowing the command to interpreting its output.*
 
 5. *(Analyze, moderate)* Take three postings from the same company — choose a company with multiple open roles. Classify each posting as live, ghost, or investigate. Write the specific signal values (posting age, update history, description specificity, portal activity, funding context) that drove each classification. Identify which classification you are least confident in and explain why.

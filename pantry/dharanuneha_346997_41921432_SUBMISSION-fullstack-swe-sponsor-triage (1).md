@@ -70,8 +70,8 @@ Before running anything:
 | Company has filed H-1B petitions for SOC 15-1252 | `data/80-days-to-stay/data/SEC_DOL_H1b_data_mapped.csv` | ✅ Verified |
 | H-1B approval rate and median salary offered | `SEC_DOL_H1b_data_mapped.csv` columns: `Approval_Rate`, `median_salary_offered` | ✅ Verified |
 | Top job titles sponsored by company | `SEC_DOL_H1b_data_mapped.csv` column: `top_job_titles_sponsored` | ✅ Verified |
-| ATS provider used by company | `SCRIPTS/ats/detect_ats.py` | ✅ Verified |
-| Number of open jobs at time of check | `SCRIPTS/ats/detect_ats.py` `open_job_count` field | ✅ Verified |
+| ATS provider used by company | `SCRIPTS/ats/detect-ats.py` | ✅ Verified |
+| Number of open jobs at time of check | `SCRIPTS/ats/detect-ats.py` `open_job_count` field | ✅ Verified |
 | Job posting URL is live at time of check | `npm run ats:liveness` | ✅ Verified at time of check only |
 | SOC 15-1252 cognitive demand and labor-market score | `data/bls/compact/soc_occupation_compact.csv` | ✅ Verified |
 
@@ -103,7 +103,7 @@ Add one company per line. Keep to 10–30 companies for a manageable first run.
 
 ```bash
 cd SCRIPTS/ats
-python3 detect_ats.py \
+python3 detect-ats.py \
   --file ../../data/ats/fullstack-swe-targets.txt \
   --output ../../data/ats/fullstack-swe-ats-check.csv
 cd ../..
@@ -113,7 +113,7 @@ Or run against the full SEC/H-1B mapped dataset:
 
 ```bash
 cd SCRIPTS/ats
-python3 detect_ats.py \
+python3 detect-ats.py \
   --csv ../../data/80-days-to-stay/data/SEC_DOL_H1b_data_mapped.csv \
   --company-column company_name \
   --output ../../data/ats/ats_detection.csv
@@ -130,7 +130,7 @@ Note: Large companies (Amazon, Google, Apple, Microsoft) use internal ATS system
 Run the SEC data audit first:
 
 ```bash
-python3 SCRIPTS/audit_sec_dol_h1b_data.py
+python3 SCRIPTS/audit-sec-dol-h1b-data.py
 ```
 
 Then query `data/80-days-to-stay/data/SEC_DOL_H1b_data_mapped.csv`. Focus on:
@@ -180,7 +180,7 @@ npm run ats:verify
 ### Step 5 — Pull BLS/SOC Role Quality Score
 
 ```bash
-python3 SCRIPTS/bls/extract_soc_occupation_table.py
+python3 SCRIPTS/bls/extract-soc-occupation-table.py
 ```
 
 Read `data/bls/compact/soc_occupation_compact.csv` and filter for SOC 15-1252.
@@ -232,8 +232,8 @@ Final output file: `data/ats/fullstack-swe-sponsor-output.csv`
 | `top_job_titles_sponsored` | `SEC_DOL_H1b_data_mapped.csv` | ✅ Verified |
 | `median_salary_offered` | `SEC_DOL_H1b_data_mapped.csv` | ✅ Verified |
 | `latest_funding_amount` | `SEC_DOL_H1b_data_mapped.csv` | ✅ Verified |
-| `ats_provider` | `SCRIPTS/ats/detect_ats.py` | ✅ Verified |
-| `open_job_count` | `SCRIPTS/ats/detect_ats.py` | ✅ Verified |
+| `ats_provider` | `SCRIPTS/ats/detect-ats.py` | ✅ Verified |
+| `open_job_count` | `SCRIPTS/ats/detect-ats.py` | ✅ Verified |
 | `posting_live` | `npm run ats:liveness` | ✅ Verified at time of check |
 | `soc_code` | Student-assigned from role title | ⚠️ Inferred |
 | `bls_cognitive_score` | `data/bls/compact/soc_occupation_compact.csv` | ✅ Verified |
@@ -252,12 +252,12 @@ Final output file: `data/ats/fullstack-swe-sponsor-output.csv`
   targeting full-stack/backend SWE (SOC 15-1252), Seattle / SF Bay Area / Los Angeles
 - **Inputs:** data/ats/fullstack-swe-targets.txt (N companies)
 - **Commands run:**
-  - `python3 SCRIPTS/ats/detect_ats.py --file ...`
-  - `python3 SCRIPTS/audit_sec_dol_h1b_data.py`
+  - `python3 SCRIPTS/ats/detect-ats.py --file ...`
+  - `python3 SCRIPTS/audit-sec-dol-h1b-data.py`
   - `python3 query_companies.py`
   - `npm run ats:liveness -- --file ...`
   - `npm run ats:verify`
-  - `python3 SCRIPTS/bls/extract_soc_occupation_table.py`
+  - `python3 SCRIPTS/bls/extract-soc-occupation-table.py`
 - **Outputs:**
   - `data/ats/fullstack-swe-ats-check.csv`
   - `data/ats/fullstack-swe-sponsor-output.csv`
@@ -323,7 +323,7 @@ a real hiring pipeline exists for the role being targeted.
 provide the foundational company triage. Without this layer, the student is sorting companies
 by brand recognition — a proxy with no verified connection to sponsorship behavior.
 
-**Job-Ops** is the secondary layer. ATS detection via `SCRIPTS/ats/detect_ats.py` and liveness
+**Job-Ops** is the secondary layer. ATS detection via `SCRIPTS/ats/detect-ats.py` and liveness
 checking via `npm run ats:liveness` ensure the student is spending time on postings that are
 actually in motion. The ATS detector also returns `open_job_count` — a real-time signal of
 how actively a company is hiring at the time of the check.
@@ -388,8 +388,8 @@ Zillow, Salesforce, Figma, Google, Meta, LinkedIn, Walmart, Apple
 **Command:**
 ```bash
 cd SCRIPTS/ats
-python3 detect_ats.py "Microsoft" "Stripe" "Airbnb" "Databricks" "Figma" "LinkedIn"
-python3 detect_ats.py "Amazon" "Chewy" "Redfin" "Zillow" "Salesforce" "Google" "Meta" "Walmart" "Apple"
+python3 detect-ats.py "Microsoft" "Stripe" "Airbnb" "Databricks" "Figma" "LinkedIn"
+python3 detect-ats.py "Amazon" "Chewy" "Redfin" "Zillow" "Salesforce" "Google" "Meta" "Walmart" "Apple"
 ```
 
 **Real output from script (2026-06-04):**
@@ -452,7 +452,7 @@ python3 query_companies.py
 ## Step 3 — BLS Role Quality Check (verified)
 
 ```bash
-python3 SCRIPTS/bls/extract_soc_occupation_table.py
+python3 SCRIPTS/bls/extract-soc-occupation-table.py
 ```
 
 | SOC Code | Occupation | Cognitive Demand | 10-yr Growth | Median Wage |
@@ -497,7 +497,7 @@ from October 2026. There is no TIER_2 "pursue later" queue.
 
 | Claim | Status | Source |
 |---|---|---|
-| ATS provider and open job count | ✅ Verified | `SCRIPTS/ats/detect_ats.py` — actually run 2026-06-04 |
+| ATS provider and open job count | ✅ Verified | `SCRIPTS/ats/detect-ats.py` — actually run 2026-06-04 |
 | H-1B approval counts, rates, salaries, job titles | ✅ Verified | `SEC_DOL_H1b_data_mapped.csv` — actually queried 2026-06-04 |
 | BLS cognitive demand score | ✅ Verified | `data/bls/compact/soc_occupation_compact.csv` |
 | SOC code 15-1252 assigned to all roles | ⚠️ Inferred | From role title — not verified against actual petition |

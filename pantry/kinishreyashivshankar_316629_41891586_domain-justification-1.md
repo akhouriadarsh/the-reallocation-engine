@@ -45,7 +45,7 @@ source for employer H-1B presence (`Total Approvals`, `Approval_Rate`,
 The `-audit.md` confirms H-1B data covers only ~5.1% of companies —
 a known gap the mode states explicitly.
 
-**Job-Ops** — `detect_ats.py` and `npm run ats:liveness` are
+**Job-Ops** — `detect-ats.py` and `npm run ats:liveness` are
 repurposed from active application tracking to passive monthly
 monitoring of 10–15 backup employers. The student is not applying —
 they are maintaining situational awareness.

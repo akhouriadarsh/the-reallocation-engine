@@ -79,13 +79,13 @@ The pipeline exposes this. From the project root:
 
 ```bash
 cd scripts/sec
-python validate_h1b_join_sample.py
+python validate-h1b-join-sample.py
 ```
 
 checks the company-name join against USCIS H-1B data, and:
 
 ```bash
-python scripts/audit_sec_dol_h1b_data.py
+python scripts/audit-sec-dol-h1b-data.py
 ```
 
 audits the full SEC + DOL + H-1B join coverage. The output is a number: how many companies on your shortlist matched, how many failed to match, and therefore how much of your list the tier actually covers. You read that coverage number before trusting any Unknown. If 30% of your shortlist failed to match, a significant fraction of your Unknowns are artifacts, not verdicts.

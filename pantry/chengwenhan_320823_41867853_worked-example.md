@@ -20,7 +20,7 @@ Target companies (from job board search, not yet verified):
   based on the dataset structure described in the repo audit
 - `data/bls/compact/soc_occupation_compact.csv` — SOC codes 15-2051 and
   15-1252 pulled from BLS compact extract
-- ATS detection: simulated `detect_ats.py` output for the five companies
+- ATS detection: simulated `detect-ats.py` output for the five companies
 - Liveness: one posting URL per company, simulated `ats:liveness` result
 
 **Note**: This is a simulation. The SEC/H-1B figures below are illustrative
@@ -31,14 +31,14 @@ not verified, until the actual scripts are run against the real data.
 ## Commands Simulated
 
 ```bash
-python3 SCRIPTS/audit_sec_dol_h1b_data.py
+python3 SCRIPTS/audit-sec-dol-h1b-data.py
 # Output: data/80-days-to-stay/data/SEC_DOL_H1b_data_mapped-audit.md
 
-python3 SCRIPTS/bls/extract_soc_occupation_table.py
+python3 SCRIPTS/bls/extract-soc-occupation-table.py
 # Output: data/bls/compact/soc_occupation_compact.csv
 
 cd SCRIPTS/ats
-python3 detect_ats.py "Anthropic" "Cohere" "Databricks" "Syntex AI" "DataVera Inc." \
+python3 detect-ats.py "Anthropic" "Cohere" "Databricks" "Syntex AI" "DataVera Inc." \
   --output ../../data/ats/nlp-ml-ats-detection-2026-06-03.csv
 cd ../..
 
@@ -138,7 +138,7 @@ call.
 - **Mode:** nlp-ml-sponsorship-triage
 - **Inputs:** SEC_DOL_H1b_data_mapped.csv (simulated), soc_occupation_compact.csv
   (simulated), five company names from job board search
-- **Commands run:** audit_sec_dol_h1b_data.py (simulated), detect_ats.py
+- **Commands run:** audit-sec-dol-h1b-data.py (simulated), detect-ats.py
   (simulated), ats:liveness (simulated)
 - **Outputs:** data/ats/reports/nlp-ml-triage-2026-06-03.md (this document)
 - **Result:** 3 companies prioritized Pursue; 1 unverified (Syntex AI);

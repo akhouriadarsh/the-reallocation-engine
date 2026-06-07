@@ -28,7 +28,7 @@ expires.
 **Step 1 — Audit the mapped dataset**
 
 ```bash
-python3 SCRIPTS/audit_sec_dol_h1b_data.py
+python3 SCRIPTS/audit-sec-dol-h1b-data.py
 ```
 
 Read the generated `-audit.md` before querying. Confirms row count,
@@ -63,7 +63,7 @@ data/bls/bls-audit.md
 Then extract your target SOC codes:
 
 ```bash
-python3 SCRIPTS/bls/extract_soc_occupation_table.py
+python3 SCRIPTS/bls/extract-soc-occupation-table.py
 grep -E "SOC-CODE" data/bls/compact/soc_occupation_compact.csv
 ```
 
@@ -85,7 +85,7 @@ configuration and ticket resolution.
 
 ```bash
 cd SCRIPTS/ats
-python3 detect_ats.py "Company A" "Company B" "Company C"
+python3 detect-ats.py "Company A" "Company B" "Company C"
 ```
 
 Note: current scrapers support Greenhouse and Lever only. Ashby and
@@ -191,7 +191,7 @@ YYYY-MM-DD — H-1B sponsorship audit: EMPLOYER NAME
 * Mode: h1b-sponsorship-audit
 * Inputs: `data/80-days-to-stay/data/SEC_DOL_H1b_data_mapped.csv`,
   `data/bls/compact/soc_occupation_compact.csv`,
-  `SCRIPTS/ats/detect_ats.py`, `npm run ats:liveness`
+  `SCRIPTS/ats/detect-ats.py`, `npm run ats:liveness`
 * Outputs: `data/ats/reports/YYYY-MM-DD-employer-sponsorship-audit.md`
 * Result: ___
 * Open issues: SCRIPTS/lca/fetch_lca_employer_summary.py not yet

@@ -129,7 +129,7 @@ This is exponentially more valuable than generic company lists.
 - Rejected virtual environments (complexity for students)
 - Installed core packages: pandas, numpy, requests, etc.
 
-### 3. Single Quarter Parser (`sec_form_d.py`)
+### 3. Single Quarter Parser (`sec-form-d.py`)
 - Parses one quarterly folder of TSV files
 - Auto-detects column names (handles variations)
 - Outputs MongoDB-ready JSON with nested structure:

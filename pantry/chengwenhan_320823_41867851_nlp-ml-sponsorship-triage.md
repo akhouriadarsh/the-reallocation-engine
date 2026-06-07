@@ -43,8 +43,8 @@ assign a SOC-based cognitive score.
 Start from the SEC/H-1B mapped dataset, not from a job board.
 
 ```bash
-python3 SCRIPTS/sec/refresh_recent_sec_quarters.py
-python3 SCRIPTS/audit_sec_dol_h1b_data.py
+python3 SCRIPTS/sec/refresh-recent-sec-quarters.py
+python3 SCRIPTS/audit-sec-dol-h1b-data.py
 ```
 
 Filter `data/80-days-to-stay/data/SEC_DOL_H1b_data_mapped.csv` for companies
@@ -64,7 +64,7 @@ separately in Step 5.
 ### Step 2 — Score Role Resilience Using BLS/O*NET Data
 
 ```bash
-python3 SCRIPTS/bls/extract_soc_occupation_table.py
+python3 SCRIPTS/bls/extract-soc-occupation-table.py
 ```
 
 For each SOC code in the shortlist, pull the cognitive demand score from
@@ -91,7 +91,7 @@ Do not substitute an LLM estimate for a missing score.
 
 ```bash
 cd SCRIPTS/ats
-python3 detect_ats.py --csv ../../data/ats/nlp-ml-shortlist-YYYY-MM-DD.csv \
+python3 detect-ats.py --csv ../../data/ats/nlp-ml-shortlist-YYYY-MM-DD.csv \
   --company-column company_name \
   --output ../../data/ats/nlp-ml-ats-detection-YYYY-MM-DD.csv
 cd ../..
@@ -227,7 +227,7 @@ Scientist."
 
 - H-1B sponsorship history for NLP/ML SOC codes, from the mapped SEC/DOL data
 - SEC Form D funding recency and amount, from `data/80-days-to-stay/`
-- ATS provider presence, using `SCRIPTS/ats/detect_ats.py`
+- ATS provider presence, using `SCRIPTS/ats/detect-ats.py`
 - Job posting liveness, using `npm run ats:liveness`
 - O*NET cognitive demand score for target SOC codes, from BLS compact extract
 
@@ -253,7 +253,7 @@ Scientist."
 - **Inputs:** data/80-days-to-stay/data/SEC_DOL_H1b_data_mapped.csv,
   data/bls/compact/soc_occupation_compact.csv,
   data/ats/nlp-ml-shortlist-YYYY-MM-DD.csv
-- **Commands run:** audit_sec_dol_h1b_data.py, detect_ats.py, ats:liveness
+- **Commands run:** audit-sec-dol-h1b-data.py, detect-ats.py, ats:liveness
 - **Outputs:** data/ats/nlp-ml-shortlist-YYYY-MM-DD.csv,
   data/ats/nlp-ml-ats-detection-YYYY-MM-DD.csv,
   data/ats/reports/nlp-ml-triage-YYYY-MM-DD.md

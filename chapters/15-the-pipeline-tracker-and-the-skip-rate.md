@@ -30,10 +30,10 @@ npm run ats:scan        # feeds new postings into the pipeline for decisions
 # tracker skill: log each decision (company, role, score, tier, timeline flag, outcome incl. skip)
 
 # Analyze tracker/scan/pipeline data for patterns and the allocation summary
-python scripts/ats/analyze_patterns.py
+python scripts/ats/analyze-patterns.py
 ```
 
-For every decision the engine produces — apply or skip — the tracker records the company and role, the composite score and tier, the timeline flag, the recommendation, and the outcome. The output of `analyze_patterns.py` is the daily allocation summary plus your skip rate and per-tier response rates. You read the skip rate first. It is the fastest signal that the method is or isn't operating.
+For every decision the engine produces — apply or skip — the tracker records the company and role, the composite score and tier, the timeline flag, the recommendation, and the outcome. The output of `analyze-patterns.py` is the daily allocation summary plus your skip rate and per-tier response rates. You read the skip rate first. It is the fastest signal that the method is or isn't operating.
 
 A privacy note that belongs here before anything else: your tracker files — `data/ats/applications.md`, `pipeline.md`, scan history — contain your real targets and real activity. They are private, never committed or shared without a privacy review. This is a hard rule that becomes load-bearing in Chapter 16.
 

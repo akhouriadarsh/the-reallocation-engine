@@ -194,7 +194,7 @@ This Tik TOC is grounded in the active repository.
 - `scripts/ats/`: ATS scanning, liveness, tracker, and pattern analysis.
 - `scripts/bls/`: SOC/O*NET/OEWS extraction.
 - `scripts/resumes/`: Markdown CV to ATS-safe PDF.
-- `scripts/audit_sec_dol_h1b_data.py`: sponsorship/funding audit.
+- `scripts/audit-sec-dol-h1b-data.py`: sponsorship/funding audit.
 
 ### Recipe Layer
 
@@ -720,11 +720,11 @@ npm run ats:dedup
 npm run ats:normalize
 npm run resumes:pdf -- --all
 npm run svg-to-png
-python3 scripts/audit_sec_dol_h1b_data.py
-python3 scripts/sec/refresh_recent_sec_quarters.py
-python3 scripts/sec/validate_h1b_join_sample.py
-python3 scripts/bls/extract_soc_occupation_table.py
-python3 scripts/ats/analyze_patterns.py
+python3 scripts/audit-sec-dol-h1b-data.py
+python3 scripts/sec/refresh-recent-sec-quarters.py
+python3 scripts/sec/validate-h1b-join-sample.py
+python3 scripts/bls/extract-soc-occupation-table.py
+python3 scripts/ats/analyze-patterns.py
 ```
 
 ---

@@ -18,7 +18,7 @@ Each provider exports:
 - `fetch(entry, ctx)` — returns normalized job objects with `title`, `url`,
   `company`, and `location`.
 
-These are not a replacement for `detect_ats.py` yet. They are the source-backed
+These are not a replacement for `detect-ats.py` yet. They are the source-backed
 provider layer for the next ATS detector expansion, especially Ashby support.
 
 ## Minimal Smoke Test
