@@ -178,7 +178,7 @@ node scripts/ats/merge-tracker.mjs --dry-run
 - `data/ats/applications.md`
 - `data/ats/scan-history.tsv`
 - `data/ats/pipeline.md`
-- `modes/RUN_LOG.md`
+- `logs/RUN_LOG.md`
 - `data/ats/reports/`
 
 It writes:

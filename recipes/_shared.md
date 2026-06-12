@@ -1,3 +1,8 @@
+---
+type: contract
+recipe_version: 0.1.0
+---
+
 # Shared Recipe Contract
 
 These recipes are student-facing operating recipes for The Reallocation Engine.

@@ -1,0 +1,64 @@
+# DOMAIN — The Reallocation Engine
+
+**Domain:** evidence-first job-search system for international students (F-1/OPT/STEM OPT), and the working repository for the book *The Reallocation Engine*.
+**Governed by:** `MYCROFT.md` (read it first). This file states what is specific to this repository: its data, its scripts, what is runnable today, and what is not.
+
+## What this domain does
+
+Reallocates scarce application effort using five evidence components: company funding (SEC Form D), sponsorship history (DOL/H-1B via 80 Days data), posting liveness (ATS detection), role quality (BLS/O*NET/SOC), and visa timeline. Liveness and timeline are gates, not votes. Skip is a successful outcome; a healthy run skips at least half of evaluated roles.
+
+## Layout (actual, current)
+
+| Path | What it is |
+|---|---|
+| `data/80-days-to-stay/` | upstream sponsorship/company source data — do not rewrite |
+| `data/sec/form-d/` | SEC Form D raw/extracted/processed |
+| `data/bls/` | BLS/O*NET/OEWS source + `data/bls/compact/` extracts |
+| `data/ats/` | ATS working data — **private by default**, review before commit |
+| `scripts/sec/`, `scripts/ats/`, `scripts/bls/`, `scripts/resumes/` | maintained automation (lowercase `scripts/` only; never `SCRIPTS/`) |
+| `recipes/` | recipe specs with lifecycle frontmatter per MYCROFT.md |
+| `chapters/` | book manuscript — no scripts or data in here |
+| `pantry/` | research/reference material (currently empty) |
+| `logs/RUN_LOG.md` | ground-truth run history |
+
+Note: some recipes reference `data/raw/`, `data/verified/`, `logs/gate-decisions/` — the planned generic layout from the conductor spec. **Those directories do not exist yet.** Until they do, the domain-specific layout above is what runs.
+
+## Runnable today (verified command surface)
+
+```bash
+npm run ats:scan -- --dry-run        # ATS provider scan (Greenhouse/Lever/Ashby)
+npm run ats:liveness -- <job-url>    # posting liveness check
+npm run ats:verify                   # pipeline integrity
+npm run ats:merge | ats:dedup | ats:normalize
+npm run resumes:pdf -- --all         # Markdown CV → ATS-safe PDF
+python3 scripts/sec/refresh-recent-sec-quarters.py
+python3 scripts/sec/validate-h1b-join-sample.py
+python3 scripts/bls/extract-soc-occupation-table.py   # KNOWN BUG: see below
+python3 scripts/ats/analyze-patterns.py               # KNOWN BUG: see below
+```
+
+## Runtime
+
+**Claude Code (or Cowork/Codex) is the v0 runtime.** A recipe's run section is addressed to the agent: execute the named step, stop at every gate, wait for human clearance, log the run. The `snickerdoodle` CLI named in recipe files is **roadmap, not runtime** — those commands do not execute anywhere yet.
+
+## Recipe inventory
+
+Core recipes (the operating surface): `_shared.md`, `scan.md`, `pipeline.md`, `oferta.md`, `tracker.md`, `pdf.md`, `patterns.md`, `update.md`. All are currently **DRAFT** — open typed TODOs, references to the unbuilt generic layout. The remaining recipe files (person-named case studies and monitor concepts) are drafts pending TODO closure and, for person-named files, privacy review before anything ships.
+
+## Known gaps and defects (honest list, 2026-06-11)
+
+1. `scripts/bls/extract-soc-occupation-table.py` reads `Recipes.txt`; the O*NET file is `Skills.txt` (rename shrapnel). Fails on fresh run.
+2. `scripts/ats/analyze-patterns.py` and `scripts/ats/README.md` reference `modes/RUN_LOG.md`; correct path is `logs/RUN_LOG.md`.
+3. The composite role scorer (book ch. 11) has no implementation — evidence feeds exist, the combiner does not.
+4. No recipe has ever completed a logged run; the honest run is outstanding.
+5. `npm run doctor` (environment + recipe-status checker) is planned, not built.
+6. Person-named recipes embed student names/IDs and cite empty `pantry/` paths — privacy review required.
+7. Book manuscript says "skill"; repository says "recipe" — terminology reconciliation pending.
+
+## Privacy
+
+Before committing, review `data/ats/` contents, rendered resumes/PDFs, and `.env*`. Application trackers, pipelines, and scan histories may reveal personal job-search activity. They appear after runs; they are not checked in by default.
+
+## First win (zero-config)
+
+Work through [`docs/tutorials/01-first-scan.md`](docs/tutorials/01-first-scan.md) — it walks the full loop: configure `portals.yml`, predict, run `npm run ats:scan -- --dry-run`, read the report line by line, judge it against the live board, and log the run. About 30 minutes; exercises included. The tutorial index is at [`docs/tutorials/README.md`](docs/tutorials/README.md).

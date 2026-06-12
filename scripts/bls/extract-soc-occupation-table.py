@@ -147,7 +147,7 @@ def build_compact_table(bls_dir: Path) -> tuple[list[dict[str, object]], dict[st
     text_dir = bls_dir / "db-30-2-text"
     occupations_path = text_dir / "Occupation Data.txt"
     abilities_path = text_dir / "Abilities.txt"
-    skills_path = text_dir / "Recipes.txt"
+    skills_path = text_dir / "Skills.txt"
     alternate_titles_path = text_dir / "Alternate Titles.txt"
     job_zones_path = text_dir / "Job Zones.txt"
 
@@ -276,7 +276,7 @@ def audit_lines(bls_dir: Path, output: Path, rows: list[dict[str, object]], meta
         "- Job preparation: O*NET job zone.",
         "- Search support: alternate title count and sample alternate titles.",
         "- Labor market context: latest OEWS employment, mean/median wage, hourly wage, PRSE.",
-        "- Cognitive demand features: selected O*NET ability and recipe Level scores.",
+        "- Cognitive demand features: selected O*NET ability and skill Level scores.",
         "- `cognitive_pivot_score`: average of selected reasoning, judgment, and systems scores.",
         "",
         "## Large Files",

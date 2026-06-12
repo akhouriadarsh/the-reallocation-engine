@@ -32,7 +32,7 @@ ATS_DIR = REPO_ROOT / "data" / "ats"
 DEFAULT_APPLICATIONS = ATS_DIR / "applications.md"
 DEFAULT_PIPELINE = ATS_DIR / "pipeline.md"
 DEFAULT_SCAN_HISTORY = ATS_DIR / "scan-history.tsv"
-DEFAULT_RUN_LOG = REPO_ROOT / "modes" / "RUN_LOG.md"
+DEFAULT_RUN_LOG = REPO_ROOT / "logs" / "RUN_LOG.md"
 DEFAULT_REPORTS_DIR = ATS_DIR / "reports"
 DEFAULT_OUTPUT = ATS_DIR / "application-patterns-audit.md"
 
