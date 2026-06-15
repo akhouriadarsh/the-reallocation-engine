@@ -19,8 +19,8 @@
     <line x1="0" y1="300" x2="460" y2="300" stroke="#2a1a0e" stroke-width="1.5"/>
 
     <!-- region labels -->
-    <text x="345" y="78" text-anchor="middle" font-size="16" font-weight="700" fill="#C8102E" font-family="EB Garamond, Georgia, serif">Apply</text>
-    <text x="115" y="78" text-anchor="middle" font-size="14" fill="#545454" font-family="EB Garamond, Georgia, serif">Consider</text>
+    <text x="345" y="28" text-anchor="middle" font-size="16" font-weight="700" fill="#C8102E" font-family="EB Garamond, Georgia, serif">Apply</text>
+    <text x="115" y="28" text-anchor="middle" font-size="14" fill="#545454" font-family="EB Garamond, Georgia, serif">Consider</text>
     <text x="345" y="228" text-anchor="middle" font-size="14" fill="#545454" font-family="EB Garamond, Georgia, serif">Consider</text>
     <text x="115" y="228" text-anchor="middle" font-size="14" fill="#545454" font-family="EB Garamond, Georgia, serif">Skip</text>
 
