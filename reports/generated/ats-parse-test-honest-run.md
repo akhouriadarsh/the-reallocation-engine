@@ -33,6 +33,41 @@ Before reading the result as true, three sanity checks:
    so the result does not hinge on one library's quirk. pdftotext was not installed,
    reported honestly as SKIP.
 
+## Batch run: all four repo resumes
+
+The rubric asks for a batch, not a single file, so the harness was run with `--all`
+across every CV the repo ships. All four PDFs were generated first, then parsed.
+
+| Resume | parse PASS-rate | WRAP | lost | EMPTY |
+|---|---|---|---|---|
+| aarav-patel | 44/45 = 97.8% | 1 | 0 | 0 |
+| maya-sehgal | 46/46 = 100% | 0 | 0 | 0 |
+| priya-nair | 47/47 = 100% | 0 | 0 | 0 |
+| rohan-desai | 53/54 = 98.1% | 1 | 0 | 0 |
+
+Every number above is script-output. No field was lost in any resume. Both
+extractors (pdfplumber and pypdf) agreed on every field in every resume; pdftotext
+was not installed and was reported as SKIP throughout.
+
+The batch made two findings that a single resume would not have shown:
+
+1. The line-wrap defect is a pattern, not a one-off. The candidate's GitHub URL was
+   split across a line break (WRAP) in two of the four resumes (aarav-patel and
+   rohan-desai) and survived whole in the other two (maya-sehgal and priya-nair).
+   So whether a GitHub link survives depends on how the contact line happens to
+   wrap, which is a layout accident, not a guarantee. This is a real, reproducible
+   defect in the renderer's contact line, and it is more serious as a pattern than
+   as a single case.
+2. Heading case is not even consistent. Across the batch, almost every section
+   heading was observed uppercased in the PDF text layer, but maya-sehgal's "Skills"
+   heading was observed as lowercase `skills`. So the renderer's heading-case
+   behavior is not uniform. A case-sensitive ATS section matcher would treat
+   `skills` and `SKILLS` differently, so this inconsistency is a real risk the tool
+   surfaced only because the batch was run.
+
+The single-resume detail below is kept as the worked example, since its WRAP is the
+clearest instance of finding 1.
+
 ## Reference run: aarav-patel-cv
 
 Result: parse PASS-rate 44/45 = 97.8%. WRAP 1. lost 0. EMPTY 0.

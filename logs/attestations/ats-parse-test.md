@@ -9,6 +9,7 @@
 |---|---|---|
 | `node scripts/resumes/generate-pdf.mjs resumes/aarav-patel-cv.md` | `-> output/resumes/aarav-patel-cv.pdf (2 pages)` | a PDF is produced from the sample CV |
 | `python3 scripts/resumes/ats_parse_test.py resumes/aarav-patel-cv.md` | 44/45 clean PASS, 1 WRAP (github.com/aaravpatel-example split across a line), 0 lost; every `##` heading observed upper-cased in the PDF text layer | most fields survive; any non-survival is reported per field, not hidden |
+| `python3 scripts/resumes/ats_parse_test.py --all` (batch over all four repo CVs) | aarav 44/45, maya 46/46, priya 47/47, rohan 53/54; 0 lost anywhere; github URL WRAP in 2 of 4; maya's Skills heading observed lower-cased | a batch, not a single file; findings should generalize or be reported per resume |
 | `python3 scripts/resumes/test_ats_parse_test.py` | `17/17 passed` | the offline unit and break tests pass |
 | Added test: entry-heading survival via check_text (present and dropped cases) | PASS when present, FAIL when dropped | entry-heading survival is claimed on the card, so it is tested |
 | Added test: date-range survival via check_text (present and dropped cases) | PASS when present, FAIL when dropped | date-range survival is claimed on the card, so it is tested |

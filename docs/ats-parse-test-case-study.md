@@ -38,22 +38,24 @@ Architecture in three moves:
 
 ## The measurable improvement
 
-On the repository's sample CV the harness returns a concrete number:
-
-- Parse PASS rate 44 of 45 fields, which is 97.8 percent, with the one non pass
-  field held out as WRAP rather than rounded up.
+Run across the four resumes the repository ships, the harness returns concrete
+numbers per resume: 44 of 45 (97.8 percent), 46 of 46, 47 of 47, and 53 of 54.
+No field was lost in any resume. The one held-out class is WRAP, a field whose
+characters all survived but were split across a line break.
 
 More useful than the headline number are the two specific defects it surfaced,
 each of which was invisible before:
 
-- One contact URL, the candidate's GitHub link, was split across a line break in
-  the PDF (`github.com/aaravpatel-` on one line, `example` on the next). A line by
-  line ATS reader could capture a broken link. Its neighbors on the same line
-  survived whole, so the failure was localized and easy to miss by eye.
-- Every section heading is stored upper cased in the PDF text layer (`Experience`
-  becomes `EXPERIENCE`), because the renderer's CSS uppercases headings for
-  display and that transform lands in the extractable text. This matters for any
-  ATS whose section matching is case sensitive.
+- The GitHub link wrapped across a line break in the PDF
+  (`github.com/aaravpatel-` on one line, `example` on the next), so a line by line
+  ATS could capture a broken link. The batch showed this is a pattern, not a fluke:
+  the link split in two of the four resumes and survived whole in the other two, so
+  whether it survives is a layout accident.
+- Section headings are stored upper cased in the PDF text layer (`Experience`
+  becomes `EXPERIENCE`) because the renderer's CSS uppercases them, which matters
+  for case sensitive ATS matching. The batch also caught that this is not even
+  consistent: one resume's `Skills` heading came out lower cased while every other
+  heading was upper, so the renderer's heading case cannot be relied on either way.
 
 ## Verified versus inferred
 
