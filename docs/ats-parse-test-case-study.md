@@ -78,7 +78,9 @@ testing it and were fixed:
 
 Two more breaks are locked as tests: a date written with an en dash in the source
 but a hyphen in the PDF must not false FAIL, and two bullets merged onto one line
-must be caught rather than counted as survived. Full suite: 14 of 14 passing.
+must be caught rather than counted as survived. I later added tests for entry
+heading survival, date range survival, and extractor disagreement, so every
+capability the tool advertises has a test behind it. Full suite: 17 of 17 passing.
 
 Known blind spot, disclosed rather than hidden: the checks cover the zero width
 character family, curly quotes, en and em dashes, and the ellipsis character, but

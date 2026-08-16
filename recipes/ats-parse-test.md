@@ -1,11 +1,9 @@
 ---
-# NOTE: reconcile these frontmatter keys against an existing recipes/*.md before
-# committing — doctor.mjs checks that every recipe carries lifecycle frontmatter,
-# and the exact key names must match the repo's schema.
-title: ATS Parse-Test Harness
 status: RUNNABLE-SAMPLE
+todos_open: 0
+last_gate: null
 attestation: null
-chapters: [13, 16]
+recipe_version: 0.1.1
 ---
 
 # Recipe: ATS Parse-Test Harness

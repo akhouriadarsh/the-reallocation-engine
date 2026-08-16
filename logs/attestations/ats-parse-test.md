@@ -1,13 +1,18 @@
 ## Attestation
-- Recipe: ats-parse-test v0.1.0
+- Recipe: ats-parse-test v0.1.1
 - By: Adarsh Akhouri · 2026-08-16
+
+> Re-attestation at v0.1.1: v0.1.0 was attested on 2026-08-16. Three tests were then added to close claim-vs-test gaps (entry-heading survival, date-range survival, and extractor disagreement detection). Per SNICKERDOODLE, a script change voids the prior attestation; this re-attests at v0.1.1. Only the test file changed; the harness logic and recipe workflow are unchanged.
 
 ### Tested
 | Ran | Saw | Expected |
 |---|---|---|
 | `node scripts/resumes/generate-pdf.mjs resumes/aarav-patel-cv.md` | `-> output/resumes/aarav-patel-cv.pdf (2 pages)` | a PDF is produced from the sample CV |
 | `python3 scripts/resumes/ats_parse_test.py resumes/aarav-patel-cv.md` | 44/45 clean PASS, 1 WRAP (github.com/aaravpatel-example split across a line), 0 lost; every `##` heading observed upper-cased in the PDF text layer | most fields survive; any non-survival is reported per field, not hidden |
-| `python3 scripts/resumes/test_ats_parse_test.py` | `14/14 passed` | the offline unit and break tests pass |
+| `python3 scripts/resumes/test_ats_parse_test.py` | `17/17 passed` | the offline unit and break tests pass |
+| Added test: entry-heading survival via check_text (present and dropped cases) | PASS when present, FAIL when dropped | entry-heading survival is claimed on the card, so it is tested |
+| Added test: date-range survival via check_text (present and dropped cases) | PASS when present, FAIL when dropped | date-range survival is claimed on the card, so it is tested |
+| Added test: extractor disagreement detection (one parser keeps a URL, one drops it) | the disagreement is reported; agreeing parsers report none | the card claims the tool reports extractor agreement, so it is tested |
 | `python3 scripts/resumes/ats_parse_test.py scripts/resumes/fixtures/adversarial-normalization-cv.md --pdf output/resumes/adversarial-normalization-cv.pdf` (deliberate break: em/en dash, curly quotes, ellipsis, zero-width space seeded) | 16/16, all four normalization checks PASS | either the renderer scrubs the seeded characters (PASS) or the harness flags residue (FAIL); it flagged none because the renderer scrubbed them |
 | Deliberate break in the test suite: a date written with an en dash in source, a hyphen in the PDF | harness matches correctly (would false-FAIL under a naive exact compare) | the harness must not false-FAIL on renderer normalization drift |
 | Deliberate break in the test suite: two bullets merged onto one extracted line | harness reports FAIL via the strict line-start check (a naive substring test would false-PASS) | a merged bullet must be caught, not counted as survived |

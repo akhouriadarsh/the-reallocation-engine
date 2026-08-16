@@ -135,8 +135,36 @@ both fixed.
 ## Tests
 
 ```
-14/14 passed
+17/17 passed
 ```
+
+Every test is listed here so the suite can be cross-checked against this writeup.
+Nothing in the suite is left undiscussed.
+
+| Test | What it proves |
+|---|---|
+| test_normalize_strips_zero_width | the normalizer removes zero-width characters |
+| test_normalize_converts_smart_punctuation | en/em dashes, curly quotes, ellipsis, and nbsp are normalized |
+| test_canon_collapses_and_normalizes | matching is whitespace and dash tolerant on both sides |
+| test_ground_truth_parses_real_cv | name, 4 sections, entries, 5 date ranges, email, phone, URLs parse from the real CV; no email domain leaks into URLs |
+| test_clean_extraction_all_pass | a faithful extraction of the sample CV passes every field (this test caught the Markdown-bold false FAIL bug) |
+| test_observed_heading_case_reported | an uppercased heading still PASSES and the observed case is reported |
+| test_empty_is_not_failure | a field absent from the source is EMPTY, not FAIL |
+| test_lost_field_is_error | a field present in the source but lost in the PDF is FAIL |
+| test_break_dash_drift_false_fail_is_fixed | deliberate break: en dash vs hyphen must not false FAIL |
+| test_break_merged_bullet_false_pass_is_caught | deliberate break: a merged bullet must be caught, not false PASS |
+| test_normalization_checks_flag_residue | the normalization checks flag residual smart punctuation and zero-width chars |
+| test_wrap_split_url_is_wrap_not_fail | a URL split across a line break is WRAP, not FAIL |
+| test_wrap_intact_url_is_pass | an intact URL is PASS |
+| test_wrap_missing_url_is_fail | a fully missing URL is FAIL |
+| test_entry_heading_survival_pass_and_fail | entry-heading survival: PASS when present, FAIL when dropped |
+| test_date_range_survival_pass_and_fail | date-range survival: PASS when present, FAIL when dropped |
+| test_extractor_disagreement_is_reported | a per-field disagreement between extractors is reported; agreeing extractors report none |
+
+Note on test history: the suite was 14 tests at v0.1.0. Three tests were added at
+v0.1.1 (entry-heading survival, date-range survival, extractor disagreement) to
+close a gap where the card claimed capabilities the suite did not directly test.
+The re-attestation records this. Current count: 17/17.
 
 Adversarial break fixture, pasted verbatim:
 

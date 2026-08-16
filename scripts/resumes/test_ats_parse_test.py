@@ -205,6 +205,51 @@ def test_wrap_missing_url_is_fail():
     check(url.status == H.STATUS_FAIL, f"missing URL should FAIL, got {url.status}")
 
 
+# --- entry heading survival (claimed on the card, now tested) ---------------- #
+def test_entry_heading_survival_pass_and_fail():
+    gt = H.parse_ground_truth(
+        "# X\ncontact\n## Experience\n### Acme Corp | Engineer\n- did a thing\n"
+    )
+    kept = H.check_text(gt, "X\ncontact\nEXPERIENCE\nAcme Corp | Engineer\ndid a thing")
+    ent = [r for r in kept if r.category == "entry"][0]
+    check(ent.status == H.STATUS_PASS, f"present entry heading should PASS, got {ent.status}")
+    lost = H.check_text(gt, "X\ncontact\nEXPERIENCE\ndid a thing")  # entry line dropped
+    ent2 = [r for r in lost if r.category == "entry"][0]
+    check(ent2.status == H.STATUS_FAIL, f"lost entry heading should FAIL, got {ent2.status}")
+
+
+# --- date range survival (claimed on the card, now tested) ------------------- #
+def test_date_range_survival_pass_and_fail():
+    gt = H.parse_ground_truth(
+        "# X\ncontact\n## Experience\n### Acme | Eng\nBoston | Jan 2020 - May 2021\n- x\n"
+    )
+    kept = H.check_text(gt, "X\ncontact\nEXPERIENCE\nAcme | Eng\nBoston | Jan 2020 - May 2021\nx")
+    d = [r for r in kept if r.category == "date"][0]
+    check(d.status == H.STATUS_PASS, f"present date range should PASS, got {d.status}")
+    lost = H.check_text(gt, "X\ncontact\nEXPERIENCE\nAcme | Eng\nBoston\nx")  # date dropped
+    d2 = [r for r in lost if r.category == "date"][0]
+    check(d2.status == H.STATUS_FAIL, f"lost date range should FAIL, got {d2.status}")
+
+
+# --- extractor disagreement detection (claimed on the card, now tested) ------ #
+def test_extractor_disagreement_is_reported():
+    gt = H.parse_ground_truth("# X\ncontact | github.com/x-example\n## E\n- a\n")
+    # extractor A keeps the URL intact; extractor B drops it -> they disagree
+    run_a = H.ExtractorRun("pdfplumber",
+                           H.check_text(gt, "X\ncontact | github.com/x-example\nE\na"))
+    run_b = H.ExtractorRun("pypdf",
+                           H.check_text(gt, "X\ncontact\nE\na"))
+    dis = H.disagreements([run_a, run_b])
+    check(any("github.com" in d for d in dis),
+          f"disagreement on the URL should be reported, got {dis}")
+    # and when both agree, no disagreement is reported for that field
+    run_c = H.ExtractorRun("pypdf",
+                           H.check_text(gt, "X\ncontact | github.com/x-example\nE\na"))
+    dis2 = H.disagreements([run_a, run_c])
+    check(not any("github.com" in d for d in dis2),
+          f"agreeing extractors should report no URL disagreement, got {dis2}")
+
+
 def main() -> int:
     tests = [v for k, v in sorted(globals().items()) if k.startswith("test_") and callable(v)]
     for t in tests:
