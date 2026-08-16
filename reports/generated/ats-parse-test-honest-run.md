@@ -37,6 +37,47 @@ Before reading the result as true, three sanity checks:
 
 Result: parse PASS-rate 44/45 = 97.8%. WRAP 1. lost 0. EMPTY 0.
 
+Real terminal output, pasted verbatim (not described):
+
+```
+ATS parse-test: aarav-patel-cv.md
+primary extractor: pdfplumber  |  also ran: pypdf
+extractors unavailable (SKIP): pdftotext
+----------------------------------------------------------------
+  PASS  [name] Aarav Patel
+  PASS  [contact] aarav.patel@example.com
+  PASS  [contact] (617) 555-0148
+  PASS  [contact] linkedin.com/in/aaravpatel-example
+  WRAP  [contact] github.com/aaravpatel-example  (survived but split across a line break (line-wrap risk))
+  PASS  [contact] aaravpatel.dev
+  PASS  [section] Experience  (observed as 'EXPERIENCE')
+  PASS  [section] Technical Skills  (observed as 'TECHNICAL SKILLS')
+  PASS  [section] Projects  (observed as 'PROJECTS')
+  PASS  [section] Education  (observed as 'EDUCATION')
+  PASS  [entry] Dassault Systemes | Software Engineer
+  PASS  [entry] Dassault Systemes | Software Engineer
+  PASS  [entry] Infosys Limited | Software Engineer
+  PASS  [entry] CVE-GPT
+  PASS  [entry] Financial Advisor AI
+  PASS  [entry] Northeastern University
+  PASS  [entry] Dharmsinh Desai University
+  PASS  [date] Jan 2026 - May 2026
+  PASS  [date] Jan 2025 - Aug 2025
+  PASS  [date] Jun 2021 - Jul 2023
+  PASS  [date] Sep 2023 - Dec 2025
+  PASS  [date] Sep 2017 - May 2021
+  PASS  [bullet] Engineered a feature flag platform in TypeScript...
+  (bullets 2 through 20 all PASS; trimmed for length, full list in the audit file)
+  PASS  [normalize] no-zero-width
+  PASS  [normalize] no-curly-quotes
+  PASS  [normalize] no-fancy-dashes
+  PASS  [normalize] no-ellipsis-char
+----------------------------------------------------------------
+  parse PASS-rate (script-output): 44/45 = 97.8%   | WRAP (split across a line): 1   | lost: 0   | EMPTY (not in source): 0
+
+  audit written: reports/generated/ats-parse-test-aarav-patel-cv-2026-08-16.md
+```
+
 The one non PASS field:
 
 ```
@@ -96,6 +137,39 @@ both fixed.
 ```
 14/14 passed
 ```
+
+Adversarial break fixture, pasted verbatim:
+
+```
+ATS parse-test: adversarial-normalization-cv.md
+primary extractor: pdfplumber  |  also ran: pypdf
+extractors unavailable (SKIP): pdftotext
+----------------------------------------------------------------
+  PASS  [name] Break Test Persona
+  PASS  [contact] break.test@example.com
+  PASS  [contact] (617) 555-0000
+  PASS  [contact] github.com/break-test-example
+  PASS  [section] Experience  (observed as 'EXPERIENCE')
+  PASS  [section] Education  (observed as 'EDUCATION')
+  PASS  [entry] Example Corp | Software Engineer
+  PASS  [entry] Northeastern University
+  PASS  [date] Jan 2020 – May 2021
+  PASS  [date] Sep 2023 — Dec 2025
+  PASS  [bullet] Built a “resilient” pipeline that reduced latenc...
+  PASS  [bullet] Shipped a fea​ture-flag service (this line hides...
+  PASS  [normalize] no-zero-width
+  PASS  [normalize] no-curly-quotes
+  PASS  [normalize] no-fancy-dashes
+  PASS  [normalize] no-ellipsis-char
+----------------------------------------------------------------
+  parse PASS-rate (script-output): 16/16 = 100.0%   | WRAP (split across a line): 0   | lost: 0   | EMPTY (not in source): 0
+```
+
+Note on the adversarial fixture output: the date column above still shows the raw
+en dash and em dash because that is the field VALUE read from the source CV for
+display. The normalization checks below it are what test the PDF text layer, and
+all four PASS, which is the real result: the renderer scrubbed the seeded
+characters before they reached the PDF.
 
 ## What the machine could not know
 
